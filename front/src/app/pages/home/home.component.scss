@@ -1,7 +1,28 @@
-.center {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+/* Home */
+.home {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+}
+
+/* Logo */
+.home__logo {
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Buttons */
+.home__buttons {
+    display: flex;
+    gap: 25px 50px;
+}
+
+/** RESPONSIVE **/
+@media screen and (max-width: 1280px) {
+    /* Buttons */
+    .home__buttons {
+        flex-direction: column;
+    }
 }
