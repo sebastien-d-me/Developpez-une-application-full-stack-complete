@@ -1,0 +1,38 @@
+@import "primeicons/primeicons.css";
+
+
+/* Base */
+* {
+    box-sizing: border-box;
+    font-family: "Poppins";
+    margin: 0;
+    padding: 0;
+}
+
+/* Form */
+.form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__column {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+
+    &:last-of-type {
+        margin-bottom: unset;
+    }
+}
+
+.button__form {
+    background-color: #7550EC!important;
+    border: unset!important;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    &:hover {
+        background-color: #5432C2!important;
+    }
+}

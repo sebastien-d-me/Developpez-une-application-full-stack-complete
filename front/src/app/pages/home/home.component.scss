@@ -3,26 +3,30 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     justify-content: center;
+    min-height: 100vh;
 }
 
 /* Logo */
 .home__logo {
-    max-width: 600px;
-    width: 100%;
+    max-width: 100%;
+    width: 500px;
 }
 
 /* Buttons */
 .home__buttons {
     display: flex;
-    gap: 25px 50px;
+    gap: 20px;
 }
 
-/** RESPONSIVE **/
-@media screen and (max-width: 1200px) {
+// Responsive
+@media screen and (max-width: 1250px) {
     /* Buttons */
     .home__buttons {
         flex-direction: column;
+    }
+
+    ::ng-deep button.p-button {
+        width: 100%;
     }
 }

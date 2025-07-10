@@ -1,0 +1,13 @@
+/* Informations */
+.page__informations {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.left, 
+.right {
+    flex: 1;
+    width: fit-content;
+}
