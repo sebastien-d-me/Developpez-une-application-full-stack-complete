@@ -5,8 +5,42 @@
     width: 100%;
 }
 
+/* Link */
+.header__link {
+    display: none;
+}
+
 /* Logo */
 .header__logo {
     height: 95px;
     width: fit-content;
+}
+
+// Responsive
+@media screen and (max-width: 1250px) {
+    /* Header */
+    .header {
+        border-bottom: unset;
+        height: 250px;
+    }
+
+    /* Logo */
+    .header__logo {
+        height: 250px;
+        margin: 15px auto 0 auto;
+        object-fit: scale-down;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    /* Header */
+    .header {
+        height: 150px;
+    }
+
+    /* Logo */
+    .header__logo {
+        height: 150px;
+    }
 }

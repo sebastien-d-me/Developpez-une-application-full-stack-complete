@@ -11,3 +11,21 @@
     flex: 1;
     width: fit-content;
 }
+
+/* Arrow */
+.page__informations__arrow > .pi-arrow-left {
+    color: #000000;
+}
+
+// Responsive
+@media screen and (max-width: 1250px) {
+    /* Arrow */
+    .page__informations__arrow {
+        
+    }
+
+    /* Title */
+    .page__informations__title {
+        font-size: 24px;
+    }
+}

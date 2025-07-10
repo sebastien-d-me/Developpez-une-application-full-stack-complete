@@ -1,1 +1,18 @@
-<p>login works!</p>
+<app-page-informations previousURL="/" title="Se connecter" />
+
+
+<form class="form" [formGroup]="loginForm">
+    <div class="form__column">
+        <label for="username">Email ou nom d'utilisateur :</label>
+        <input formControlName="username" id="username" name="username" pInputText type="text" />
+    </div>
+
+    <div class="form__column">
+        <label for="password">Mot de passe :</label>
+        <input formControlName="password" id="password" name="password" pInputText type="password" />
+    </div>
+
+    <div class="form__column">
+        <button class="button__form" label="Se connecter" pButton></button>
+    </div>
+</form>
