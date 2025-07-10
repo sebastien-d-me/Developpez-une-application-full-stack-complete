@@ -9,6 +9,6 @@ import { RouterModule } from "@angular/router";
   styleUrl: "./page-informations.component.scss"
 })
 export class PageInformationsComponent {
-    @Input() title = "";
-    @Input() previousURL = "";
+    @Input() title: string = "";
+    @Input() previousURL: string = "";
 }

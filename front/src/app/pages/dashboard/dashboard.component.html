@@ -1,0 +1,19 @@
+<div class="dashboard">
+    <div class="dashboard__informations">
+        <div>
+            <button class="button__purple" label="Créer un article" pButton></button>
+        </div>
+        <div>
+            <span>Trier par</span>
+        </div>
+    </div>
+    <div class="dashboard__articles">
+         <app-article-tile
+            *ngFor="let article of articles"
+            [title]="article.title"
+            [date]="article.date"
+            [author]="article.author"
+            [text]="article.text">
+        </app-article-tile>
+    </div>
+</div>

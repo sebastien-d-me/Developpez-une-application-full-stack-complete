@@ -1,0 +1,19 @@
+/* Informations */
+.dashboard__informations {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+/* Articles */
+.dashboard__articles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+app-article-tile {
+    display: flex;
+    flex: 1 0 calc(50% - (20px * 1 / 2));
+}

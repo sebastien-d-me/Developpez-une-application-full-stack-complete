@@ -1,23 +1,25 @@
 <app-page-informations previousURL="/" title="Inscription" />
 
 
-<form class="form" [formGroup]="registerForm">
-    <div class="form__column">
-        <label for="username">Nom d'utilisateur :</label>
-        <input formControlName="username" id="username" name="username" pInputText type="text" />
-    </div>
+<div class="register">
+    <form class="form" [formGroup]="registerForm">
+        <div class="form__column">
+            <label for="username">Nom d'utilisateur :</label>
+            <input formControlName="username" id="username" name="username" pInputText type="text" />
+        </div>
 
-    <div class="form__column">
-        <label for="email">Adresse email :</label>
-        <input formControlName="email" id="email" name="email" pInputText type="email" />
-    </div>
+        <div class="form__column">
+            <label for="email">Adresse email :</label>
+            <input formControlName="email" id="email" name="email" pInputText type="email" />
+        </div>
 
-    <div class="form__column">
-        <label for="password">Mot de passe :</label>
-        <input formControlName="password" id="password" name="password" pInputText type="password" />
-    </div>
+        <div class="form__column">
+            <label for="password">Mot de passe :</label>
+            <input formControlName="password" id="password" name="password" pInputText type="password" />
+        </div>
 
-    <div class="form__column">
-        <button class="button__form" label="S'inscrire" pButton></button>
-    </div>
-</form>
+        <div class="form__column">
+            <button class="button__purple" label="S'inscrire" pButton></button>
+        </div>
+    </form>
+</div>
