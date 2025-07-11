@@ -1,13 +1,12 @@
 /* Header */
 .header {
+    align-items: center;
     border-bottom: 1px solid #D1D1D1;
+    display: flex;
+    justify-content: space-between;
     height: 95px;
+    padding: 0 25px;
     width: 100%;
-}
-
-/* Link */
-.header__link {
-    display: none;
 }
 
 /* Logo */
@@ -15,6 +14,26 @@
     height: 95px;
     width: fit-content;
 }
+
+/* Menu */
+.header__menu {
+    display: flex;
+    gap: 15px;
+}
+
+.header__link {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+
+    &.active {
+        color: #6C5CCF;
+    }
+
+    &.logout {
+        color: #A40F0F;
+    }
+} 
 
 // Responsive
 @media screen and (max-width: 1250px) {

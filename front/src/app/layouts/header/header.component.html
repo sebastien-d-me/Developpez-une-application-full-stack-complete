@@ -1,3 +1,8 @@
 <header class="header">
     <img alt="Logo du site" class="header__logo" src="./images/logo.png">
+    <nav class="header__menu" *ngIf="isMemberMenu">
+        <a class="header__link logout" href="#">Se déconnecter</a>
+        <a class="header__link" routerLink="/dashboard" routerLinkActive="active">Articles</a>
+        <a class="header__link" routerLink="/themes"  routerLinkActive="active">Thèmes</a>
+    </nav>
 </header>

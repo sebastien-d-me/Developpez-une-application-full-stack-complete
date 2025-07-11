@@ -6,6 +6,15 @@
     margin-bottom: 25px;
 }
 
+/* Filtre */
+.informations__filter {
+    font-weight: bold;
+}
+
+.filter__arrow:hover {
+    cursor: pointer;
+}
+
 /* Articles */
 .dashboard__articles {
     display: flex;

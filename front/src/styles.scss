@@ -9,6 +9,11 @@
     padding: 0;
 }
 
+/* Content */
+.hide {
+    display: none!important;
+}
+
 /* Form */
 .form {
     align-items: center;
@@ -26,6 +31,7 @@
     }
 }
 
+/* Button */
 .button__purple {
     background-color: #7550EC!important;
     border: unset!important;

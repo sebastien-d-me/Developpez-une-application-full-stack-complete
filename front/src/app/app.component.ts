@@ -19,5 +19,4 @@ export class AppComponent {
             this.isHomePage = this.router.url === "/";
         });
     }
-
 }

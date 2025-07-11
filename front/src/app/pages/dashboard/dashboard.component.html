@@ -3,8 +3,10 @@
         <div>
             <button class="button__purple" label="Créer un article" pButton></button>
         </div>
-        <div>
-            <span>Trier par</span>
+        <div class="informations__filter">
+            <span>Trier par </span>
+            <i class="filter__arrow pi pi-arrow-down" (click)="filterBy('old')"></i>
+            <i class="filter__arrow hide pi pi-arrow-up" (click)="filterBy('recent')"></i>
         </div>
     </div>
     <div class="dashboard__articles">
