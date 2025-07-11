@@ -51,9 +51,9 @@ export class DashboardComponent {
     @ViewChild("arrowUp") arrowUp!: ElementRef;
     
     filterBy(type: string) {
-        console.log(this.arrowUp)
         this.arrowDown.nativeElement.classList.remove("hide");
         this.arrowUp.nativeElement.classList.remove("hide");
         type === "old" ? this.arrowDown.nativeElement.classList.add("hide") : this.arrowUp.nativeElement.classList.add("hide");
+        this.articles.reverse();
     }
 }
