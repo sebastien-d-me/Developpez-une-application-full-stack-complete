@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { ArticleTileComponent } from "../../components/article-tile/article-tile.component";
 import { ButtonModule } from "primeng/button";
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
 
 interface Article {
   title: string;
@@ -11,12 +11,13 @@ interface Article {
 }
 
 @Component({
-  selector: 'app-dashboard',
+  selector: "app-dashboard",
   standalone: true,
   imports: [ArticleTileComponent, CommonModule, ButtonModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: "./dashboard.component.html",
+  styleUrl: "./dashboard.component.scss"
 })
+
 export class DashboardComponent {
     articles: Article[] = [
         {
@@ -46,13 +47,13 @@ export class DashboardComponent {
     ];
 
     /* Filter by */
+    @ViewChild("arrowDown") arrowDown!: ElementRef;
+    @ViewChild("arrowUp") arrowUp!: ElementRef;
+    
     filterBy(type: string) {
-        document.querySelector(".pi-arrow-down")?.classList.remove("hide");
-        document.querySelector(".pi-arrow-up")?.classList.remove("hide");
-        if(type === "old") {
-            document.querySelector(".pi-arrow-down")?.classList.add("hide");
-        } else {
-            document.querySelector(".pi-arrow-up")?.classList.add("hide");
-        }
+        console.log(this.arrowUp)
+        this.arrowDown.nativeElement.classList.remove("hide");
+        this.arrowUp.nativeElement.classList.remove("hide");
+        type === "old" ? this.arrowDown.nativeElement.classList.add("hide") : this.arrowUp.nativeElement.classList.add("hide");
     }
 }
