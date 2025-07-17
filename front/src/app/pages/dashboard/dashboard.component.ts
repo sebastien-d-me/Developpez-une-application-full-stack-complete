@@ -3,11 +3,12 @@ import { ArticleTileComponent } from "../../components/article-tile/article-tile
 import { ButtonModule } from "primeng/button";
 import { CommonModule } from "@angular/common";
 
+
 interface Article {
-  title: string;
-  date: string;
-  author: string;
-  text: string;
+    title: string;
+    date: string;
+    author: string;
+    text: string;
 }
 
 @Component({
