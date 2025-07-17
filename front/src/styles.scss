@@ -25,10 +25,17 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
+    max-width: 800px;
+    width: 100%;
 
     &:last-of-type {
         margin-bottom: unset;
     }
+}
+
+textarea {
+    min-height: 145px;
+    resize: vertical;
 }
 
 /* Button */

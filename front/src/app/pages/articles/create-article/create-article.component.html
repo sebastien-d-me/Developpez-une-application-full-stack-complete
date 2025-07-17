@@ -1,0 +1,24 @@
+<app-page-informations previousURL="/dashboard" title="Créer un nouvel article" />
+
+<div class="login">
+    <form class="form" [formGroup]="articleForm">
+        <div class="form__column">
+            <label for="theme">Sélectionner un thème :</label>
+            <p-select [options]="themes" optionLabel="name"/>
+        </div>
+
+        <div class="form__column">
+            <label for="title">Titre de l'article</label>
+            <input formControlName="title" id="title" name="title" pInputText type="text" />
+        </div>
+
+        <div class="form__column">
+            <label for="content">Contenu de l'article</label>
+            <textarea cols="30" formControlName="content" id="content" name="content" rows="5" pTextarea></textarea>
+        </div>
+
+        <div class="form__column">
+            <button class="button__purple" label="Créer" pButton></button>
+        </div>
+    </form>
+</div>

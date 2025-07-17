@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { ArticleTileComponent } from "../../components/article-tile/article-tile.component";
+import { ArticleTileComponent } from "../../../components/articles/article-tile/article-tile.component";
 import { ButtonModule } from "primeng/button";
 import { CommonModule } from "@angular/common";
+import { RouterLink } from "@angular/router";
 
 
 interface Article {
@@ -14,7 +15,7 @@ interface Article {
 @Component({
   selector: "app-dashboard",
   standalone: true,
-  imports: [ArticleTileComponent, CommonModule, ButtonModule],
+  imports: [ArticleTileComponent, CommonModule, ButtonModule, RouterLink],
   templateUrl: "./dashboard.component.html",
   styleUrl: "./dashboard.component.scss"
 })

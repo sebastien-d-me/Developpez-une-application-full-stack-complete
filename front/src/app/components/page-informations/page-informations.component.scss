@@ -19,13 +19,16 @@
 
 // Responsive
 @media screen and (max-width: 1250px) {
-    /* Arrow */
-    .page__informations__arrow {
-        
-    }
-
     /* Title */
     .page__informations__title {
         font-size: 24px;
+    }
+}
+
+// Responsive
+@media screen and (max-width: 1250px) {
+    /* Title */
+    .page__informations__title {
+        font-size: 18px;
     }
 }

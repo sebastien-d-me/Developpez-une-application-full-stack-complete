@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ThemeTileComponent } from '../../components/theme-tile/theme-tile.component';
+import { ThemeTileComponent } from '../../../components/themes/theme-tile/theme-tile.component';
 import { CommonModule } from '@angular/common';
 
 interface Theme {
@@ -13,10 +13,10 @@ interface Theme {
   selector: 'app-themes',
   standalone: true,
   imports: [ThemeTileComponent, CommonModule],
-  templateUrl: './themes.component.html',
-  styleUrl: './themes.component.scss'
+  templateUrl: './themes-list.component.html',
+  styleUrl: './themes-list.component.scss'
 })
-export class ThemesComponent {
+export class ThemesListComponent {
     themes: Theme[] = [
         {
             title: "Thème 1",

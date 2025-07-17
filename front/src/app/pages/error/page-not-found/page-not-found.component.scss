@@ -1,0 +1,17 @@
+/* ERROR */
+.error {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+}
+
+/* Title */
+.page__title {
+    margin-bottom: 15px;
+}
+
+/* Description */
+.page__description {
+    text-align: justify;
+}
