@@ -2,3 +2,22 @@
 .main__block {
     padding: 20px 50px;
 }
+
+
+// Responsive
+@media screen and (max-width: 1250px) {
+    /* Main */
+    .main__block {
+        padding: 20px 10px;
+    }
+
+    /* Overlay */
+    .overlay {
+        background-color: #EEEEEE80;
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+}

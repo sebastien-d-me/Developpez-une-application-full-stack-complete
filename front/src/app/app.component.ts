@@ -19,4 +19,11 @@ export class AppComponent {
             this.isHomePage = this.router.url === "/";
         });
     }
+
+    hideMenu() {
+        if(!document.querySelector(".mobile__pannel")?.classList.contains("hide")) {
+            document.querySelector(".mobile__pannel")?.classList.add("hide");
+            document.querySelector(".overlay")?.classList.add("hide");
+        }
+    }
 }

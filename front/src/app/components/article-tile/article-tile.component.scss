@@ -6,14 +6,32 @@
     width: 100%;
 }
 
-// Informations
+/* Informations */
 .article__informations {
     display: flex;
     gap: 20px;
     margin: 10px 0;
 }
 
-// Description
-.article__description::before {
-    content: "Contenu : ";
+/* Description */
+.article__description {
+    text-align: justify;
+
+    &::before {
+        content: "Contenu : ";
+    }
+}
+
+
+// Responsive
+@media screen and (max-width: 1250px) {
+    /* Article */
+    .article__tile {
+        font-size: 15px;
+    }
+
+    /* Informations */
+    .article__informations {
+        justify-content: space-between;
+    }
 }

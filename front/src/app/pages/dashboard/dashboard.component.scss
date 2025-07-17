@@ -26,3 +26,18 @@ app-article-tile {
     display: flex;
     flex: 1 0 calc(50% - (20px * 1 / 2));
 }
+
+
+// Responsive
+@media screen and (max-width: 1250px) {
+    /* Informations */
+    .dashboard__informations {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Articles */
+    .dashboard__articles {
+        flex-direction: column;
+    }
+}

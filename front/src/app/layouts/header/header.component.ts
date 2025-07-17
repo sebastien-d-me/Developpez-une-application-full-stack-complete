@@ -13,7 +13,6 @@ export class HeaderComponent {
     isMemberMenu = false;
 
     constructor(private router: Router) {
-
         this.router.events.subscribe(() => {
             switch(this.router.url) {
                 case "/":
@@ -30,5 +29,10 @@ export class HeaderComponent {
                     break;
             }
         });
+    }
+
+    openMenu() {
+        document.querySelector(".mobile__pannel")?.classList.remove("hide");
+        document.querySelector(".overlay")?.classList.remove("hide");
     }
 }
