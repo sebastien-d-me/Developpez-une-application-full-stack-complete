@@ -4,15 +4,24 @@
         <a class="header__link logout" href="#">Se déconnecter</a>
         <a class="header__link" routerLink="/dashboard" routerLinkActive="active">Articles</a>
         <a class="header__link" routerLink="/themes"  routerLinkActive="active">Thèmes</a>
+        <a class="header__avatar" href="#">
+            <i class="pi pi-user"></i>
+        </a>
     </nav>
+
     <span class="header__link icon--mobile" *ngIf="isMemberMenu" (click)="openMenu()">
         <i class="pi pi-bars"></i>
     </span>
 </header>
 <div class="hide mobile__pannel" #mobilePannel>
-    <nav class="header__menu--mobile" *ngIf="isMemberMenu">
-        <a class="header__link logout" href="#">Se déconnecter</a>
-        <a class="header__link" routerLink="/dashboard" routerLinkActive="active">Articles</a>
-        <a class="header__link" routerLink="/themes"  routerLinkActive="active">Thèmes</a>
-    </nav>
+    <div class="mobile__pannel__container">
+        <nav class="mobile__pannel__nav" *ngIf="isMemberMenu">
+            <a class="header__link logout" href="#">Se déconnecter</a>
+            <a class="header__link" routerLink="/dashboard" routerLinkActive="active">Articles</a>
+            <a class="header__link" routerLink="/themes"  routerLinkActive="active">Thèmes</a>
+        </nav>
+        <a class="header__avatar" href="#">
+            <i class="pi pi-user"></i>
+        </a>
+    </div>
 </div>
