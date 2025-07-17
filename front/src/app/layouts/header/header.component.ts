@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -31,8 +31,10 @@ export class HeaderComponent {
         });
     }
 
+    /* Open menu */
+    @ViewChild("mobilePannel") mobilePannel!: ElementRef;
     openMenu() {
-        document.querySelector(".mobile__pannel")?.classList.remove("hide");
+        this.mobilePannel.nativeElement.classList.remove("hide");
         document.querySelector(".overlay")?.classList.remove("hide");
     }
 }

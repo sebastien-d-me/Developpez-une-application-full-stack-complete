@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./layouts/header/header.component";
 import { CommonModule } from '@angular/common';
@@ -20,10 +20,12 @@ export class AppComponent {
         });
     }
 
+    /* Hide menu */
+    @ViewChild("overlay") overlay!: ElementRef;
     hideMenu() {
-        if(!document.querySelector(".mobile__pannel")?.classList.contains("hide")) {
-            document.querySelector(".mobile__pannel")?.classList.add("hide");
-            document.querySelector(".overlay")?.classList.add("hide");
+        if(!document.querySelector(".mobile__pannel")?.classList.remove("hide")) {
+            document.querySelector(".mobile__pannel")?.classList.add("hide")
+            this.overlay.nativeElement.classList.add("hide");
         }
     }
 }

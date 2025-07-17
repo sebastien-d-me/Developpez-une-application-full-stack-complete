@@ -9,7 +9,7 @@
         <i class="pi pi-bars"></i>
     </span>
 </header>
-<div class="hide mobile__pannel">
+<div class="hide mobile__pannel" #mobilePannel>
     <nav class="header__menu--mobile" *ngIf="isMemberMenu">
         <a class="header__link logout" href="#">Se déconnecter</a>
         <a class="header__link" routerLink="/dashboard" routerLinkActive="active">Articles</a>
