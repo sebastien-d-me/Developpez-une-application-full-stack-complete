@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/member/dashboard/dashboard.component
 import { ThemesListComponent } from './pages/themes/themes-list/themes-list.component';
 import { CreateArticleComponent } from './pages/articles/create-article/create-article.component';
 import { PageNotFoundComponent } from './pages/error/page-not-found/page-not-found.component';
+import { ProfilComponent } from './pages/member/profil/profil.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: "dashboard", component: DashboardComponent },
     { path: "themes", component: ThemesListComponent},
     { path: "articles/ajouter", component: CreateArticleComponent},
+    { path: "profil", component: ProfilComponent},
     { path: "**", component:PageNotFoundComponent }
 ];

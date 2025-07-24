@@ -72,8 +72,8 @@ i.pi.pi-user {
     /* Logo */
     .header__logo {
         height: 80px;
-        margin: auto;
-        width: 100px;
+        margin: auto 0;
+        width: 150px;
     }
 
     /* Menu */
@@ -85,7 +85,11 @@ i.pi.pi-user {
     .icon--mobile {
         display: block;
         text-align: right;
-        width: 80%;
+        width: fit-content;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .mobile__pannel {
@@ -112,5 +116,14 @@ i.pi.pi-user {
     .mobile__pannel__nav {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    /* Logo */
+    .header__logo {
+        height: 80px;
+        margin: auto 0;
+        width: 100px;
     }
 }

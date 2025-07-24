@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { ThemeTileComponent } from '../../../components/themes/theme-tile/theme-tile.component';
+import { ThemeTileComponent } from "../../../components/themes/theme-tile/theme-tile.component";
 import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from "primeng/inputtext";
 
 
 interface Theme {
@@ -11,13 +14,15 @@ interface Theme {
 
 
 @Component({
-  selector: 'app-themes',
+  selector: 'app-profil',
   standalone: true,
-  imports: [ThemeTileComponent, CommonModule],
-  templateUrl: './themes-list.component.html',
-  styleUrl: './themes-list.component.scss'
+  imports: [ThemeTileComponent, CommonModule, FormsModule, InputTextModule, ReactiveFormsModule, ButtonModule],
+  templateUrl: './profil.component.html',
+  styleUrl: './profil.component.scss'
 })
-export class ThemesListComponent {
+export class ProfilComponent {
+    profilForm: FormGroup;
+
     themes: Theme[] = [
         {
             title: "Thème 1",
@@ -40,4 +45,12 @@ export class ThemesListComponent {
             isSubscribe: false,
         },
     ];
+
+        constructor() {
+            this.profilForm = new FormGroup({
+                username: new FormControl(""),
+                email: new FormControl(""),
+                password: new FormControl("")
+            });
+        }
 }
