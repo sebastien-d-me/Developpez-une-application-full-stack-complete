@@ -1,0 +1,44 @@
+/* Commentaires */
+.comment {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Author */
+.comment__author {
+    max-width: 20%;
+}
+
+/* Content */
+.comment__content {
+    align-items: center;
+    background-color: #EEEEEE;
+    border-radius: 5px;
+    display: flex;
+    padding: 15px;
+    width: 80%;
+}
+
+// Responsive
+@media screen and (max-width: 1250px) {
+
+    /* cOMMENTS */
+    .comment {
+        align-items: unset;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comment__author {
+        display: block;
+        max-width: unset;
+        text-align: right;
+        width: 100%;
+    }
+
+    .comment__content {
+        width: 100%;
+    }
+}

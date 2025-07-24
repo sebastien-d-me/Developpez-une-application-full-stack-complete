@@ -1,1 +1,27 @@
-<p>article works!</p>
+<div class="article">
+    <div class="article__container">
+        <h2>Titre de l'article sélectionné</h2>
+        <div class="article__informations">
+            <span>Date</span>
+            <span>Auteur</span>
+            <span>Thème</span>
+        </div>
+        <p class="article__content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit itaque eos saepe doloremque, nostrum cumque!
+        </p>
+    </div>
+    <div class="article__comments">
+        <span class="subtitle">Commentaires</span>
+        <div class="comments__list">
+            <app-comment *ngFor="let comment of comments" [author]="comment.author" [date]="comment.date"  [text]="comment.text"></app-comment>
+        </div>
+        <form class="form" [formGroup]="commentForm">
+            <div class="form__column form__column--inline">
+                <textarea cols="30" formControlName="content" name="content" placeholder="Écrivez ici votre commentaire" rows="5" pTextarea></textarea>
+                <a href="#">
+                    <i class="pi pi-send"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

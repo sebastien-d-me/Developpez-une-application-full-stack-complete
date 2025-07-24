@@ -7,14 +7,16 @@ import { ThemesListComponent } from './pages/themes/themes-list/themes-list.comp
 import { CreateArticleComponent } from './pages/articles/create-article/create-article.component';
 import { PageNotFoundComponent } from './pages/error/page-not-found/page-not-found.component';
 import { ProfilComponent } from './pages/member/profil/profil.component';
+import { ArticleComponent } from './pages/articles/article/article.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
-    { path: "register", component: RegisterComponent },
-    { path: "login", component: LoginComponent },
-    { path: "dashboard", component: DashboardComponent },
+    { path: "member/register", component: RegisterComponent },
+    { path: "member/login", component: LoginComponent },
+    { path: "member/dashboard", component: DashboardComponent },
+    { path: "member/profil", component: ProfilComponent},
     { path: "themes", component: ThemesListComponent},
+    { path: "articles/:id", component: ArticleComponent},
     { path: "articles/ajouter", component: CreateArticleComponent},
-    { path: "profil", component: ProfilComponent},
     { path: "**", component:PageNotFoundComponent }
 ];
