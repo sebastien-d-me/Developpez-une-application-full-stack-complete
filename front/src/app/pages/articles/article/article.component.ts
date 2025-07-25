@@ -3,6 +3,7 @@ import { CommentComponent } from "../../../components/comment/comment.component"
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
 import { CommonModule } from '@angular/common';
+import { RouterLink, RouterModule } from '@angular/router';
 
 
 interface Comment {
@@ -16,7 +17,7 @@ interface Comment {
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [CommentComponent, TextareaModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommentComponent, TextareaModule, CommonModule, RouterModule, RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss'
 })

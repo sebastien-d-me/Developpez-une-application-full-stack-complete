@@ -1,5 +1,7 @@
 <article class="article__tile">
-    <h2 class="article__title">{{ title }}</h2>
+    <a class="article__link" [href]="link">
+        <h2 class="article__title">{{ title }}</h2>
+    </a>
     <div class="article__informations">
         <span>{{ date }} </span>
         <span>{{ author }}</span>

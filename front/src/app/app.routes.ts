@@ -15,8 +15,8 @@ export const routes: Routes = [
     { path: "member/login", component: LoginComponent },
     { path: "member/dashboard", component: DashboardComponent },
     { path: "member/profil", component: ProfilComponent},
-    { path: "themes", component: ThemesListComponent},
     { path: "articles/:id", component: ArticleComponent},
     { path: "articles/ajouter", component: CreateArticleComponent},
+    { path: "themes", component: ThemesListComponent},
     { path: "**", component:PageNotFoundComponent }
 ];

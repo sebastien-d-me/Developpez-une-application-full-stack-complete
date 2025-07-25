@@ -22,6 +22,20 @@
     }
 }
 
+/* Link */
+.article__link {
+    border-bottom: 1px solid transparent;
+    color: #000000;
+    display: block;
+    transition: 0.5s;
+    text-decoration: none;
+    width: fit-content;
+
+    &:hover {
+        border-bottom-color: #000000;
+    }
+}
+
 
 // Responsive
 @media screen and (max-width: 1250px) {

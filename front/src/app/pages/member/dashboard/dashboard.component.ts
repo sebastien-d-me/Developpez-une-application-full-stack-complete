@@ -10,6 +10,7 @@ interface Article {
     date: string;
     author: string;
     text: string;
+    id: number;
 }
 
 @Component({
@@ -23,24 +24,28 @@ interface Article {
 export class DashboardComponent {
     articles: Article[] = [
         {
+            id: 1,
             title: "Article 1",
             date: "10-07-2025",
             author: "Sébastien D.",
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!"
         },
         {
+            id: 2,
             title: "Article 2",
             date: "07-07-2025",
             author: "John D.",
             text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, tempore."
         },
         {
+            id: 3,
             title: "Article 3",
             date: "06-07-2025",
             author: "Sébastien D.",
             text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo recusandae suscipit sint reiciendis dolor facere at, nulla quas repellendus ut."
         },
         {
+            id: 4,
             title: "Article 4",
             date: "01-07-2025",
             author: "Martin A.",

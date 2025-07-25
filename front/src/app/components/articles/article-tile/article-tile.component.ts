@@ -12,4 +12,11 @@ export class ArticleTileComponent {
     @Input() date : string = "";
     @Input() author : string = "";
     @Input() text : string = "";
+    @Input() id : number = 0;
+
+    link: string = "";
+
+    ngOnChanges() {
+        this.link = `/articles/${this.id}`;
+    }
 }
