@@ -23,7 +23,7 @@ export class AppComponent {
     /* Hide menu */
     @ViewChild("overlay") overlay!: ElementRef;
     hideMenu() {
-        if(!document.querySelector(".mobile__pannel")?.classList.remove("hide")) {
+        if(!document.querySelector(".mobile__pannel")?.classList.contains("hide")) {
             document.querySelector(".mobile__pannel")?.classList.add("hide")
             this.overlay.nativeElement.classList.add("hide");
         }

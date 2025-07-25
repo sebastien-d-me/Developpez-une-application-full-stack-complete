@@ -46,6 +46,7 @@
 
     /* Informations */
     .article__informations {
-        justify-content: space-between;
+        gap: 50px;
+        justify-content: start;
     }
 }

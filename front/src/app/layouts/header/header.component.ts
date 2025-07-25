@@ -37,4 +37,12 @@ export class HeaderComponent {
         this.mobilePannel.nativeElement.classList.remove("hide");
         document.querySelector(".overlay")?.classList.remove("hide");
     }
+
+    /* Close menu */
+    hideMenu() {
+        if(!this.mobilePannel.nativeElement.classList.contains("hide")) {
+            this.mobilePannel.nativeElement.classList.add("hide");
+            document.querySelector(".overlay")?.classList.add("hide");
+        }
+    }
 }

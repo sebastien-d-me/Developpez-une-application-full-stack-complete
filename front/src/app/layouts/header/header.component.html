@@ -16,11 +16,11 @@
 <div class="hide mobile__pannel" #mobilePannel>
     <div class="mobile__pannel__container">
         <nav class="mobile__pannel__nav" *ngIf="isMemberMenu">
-            <a class="header__link logout" href="/member/logout">Se déconnecter</a>
-            <a class="header__link" routerLink="/member/dashboard" routerLinkActive="active">Articles</a>
-            <a class="header__link" routerLink="/themes"  routerLinkActive="active">Thèmes</a>
+            <a class="header__link logout" href="/member/logout" (click)="hideMenu()">Se déconnecter</a>
+            <a class="header__link" routerLink="/member/dashboard" routerLinkActive="active" (click)="hideMenu()">Articles</a>
+            <a class="header__link" routerLink="/themes" (click)="hideMenu()" routerLinkActive="active">Thèmes</a>
         </nav>
-        <a class="header__avatar" href="/member/profil">
+        <a class="header__avatar" href="/member/profil" (click)="hideMenu()">
             <i class="pi pi-user"></i>
         </a>
     </div>
