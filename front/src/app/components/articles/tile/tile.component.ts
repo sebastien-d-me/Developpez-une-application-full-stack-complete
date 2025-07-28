@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'app-article-tile',
   standalone: true,
   imports: [],
-  templateUrl: './article-tile.component.html',
-  styleUrl: './article-tile.component.scss'
+  templateUrl: './tile.component.html',
+  styleUrl: './tile.component.scss'
 })
 export class ArticleTileComponent {
     @Input() title : string = "";

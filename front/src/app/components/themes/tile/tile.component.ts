@@ -6,8 +6,8 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-theme-tile',
   standalone: true,
   imports: [ButtonModule, CommonModule],
-  templateUrl: './theme-tile.component.html',
-  styleUrl: './theme-tile.component.scss'
+  templateUrl: './tile.component.html',
+  styleUrl: './tile.component.scss'
 })
 export class ThemeTileComponent {
     @Input() title : string = "";

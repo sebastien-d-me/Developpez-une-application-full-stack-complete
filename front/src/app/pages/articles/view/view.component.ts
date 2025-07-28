@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommentComponent } from "../../../components/comment/comment.component";
+import { CommentComponent } from "../../../components/articles/comment/comment.component";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextareaModule } from 'primeng/textarea';
 import { CommonModule } from '@angular/common';
@@ -15,13 +15,13 @@ interface Comment {
 
 
 @Component({
-  selector: 'app-article',
+  selector: 'app-article-view',
   standalone: true,
   imports: [CommentComponent, TextareaModule, CommonModule, RouterModule, RouterLink, FormsModule, ReactiveFormsModule],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.scss'
+  templateUrl: './view.component.html',
+  styleUrl: './view.component.scss'
 })
-export class ArticleComponent {
+export class ArticleViewPage {
 
     commentForm: FormGroup;
 

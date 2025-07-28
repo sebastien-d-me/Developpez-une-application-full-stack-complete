@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ThemeTileComponent } from "../../../components/themes/theme-tile/theme-tile.component";
+import { ThemeTileComponent } from "../../../components/themes/tile/tile.component";
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from 'primeng/button';
@@ -14,13 +14,13 @@ interface Theme {
 
 
 @Component({
-  selector: 'app-profil',
+  selector: 'app-member-profil',
   standalone: true,
   imports: [ThemeTileComponent, CommonModule, FormsModule, InputTextModule, ReactiveFormsModule, ButtonModule],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.scss'
 })
-export class ProfilComponent {
+export class MemberProfilPage {
     profilForm: FormGroup;
 
     themes: Theme[] = [

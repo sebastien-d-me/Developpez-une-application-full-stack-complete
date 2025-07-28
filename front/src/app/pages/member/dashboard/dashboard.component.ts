@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { ArticleTileComponent } from "../../../components/articles/article-tile/article-tile.component";
+import { ArticleTileComponent } from "../../../components/articles/tile/tile.component";
 import { ButtonModule } from "primeng/button";
 import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
@@ -14,14 +14,14 @@ interface Article {
 }
 
 @Component({
-  selector: "app-dashboard",
+  selector: "app-member-dashboard",
   standalone: true,
   imports: [ArticleTileComponent, CommonModule, ButtonModule, RouterLink],
   templateUrl: "./dashboard.component.html",
   styleUrl: "./dashboard.component.scss"
 })
 
-export class DashboardComponent {
+export class MemberDashboardPage {
     articles: Article[] = [
         {
             id: 1,

@@ -1,22 +1,23 @@
-import { Routes } from '@angular/router';
-import { RegisterComponent } from './pages/member/register/register.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/member/login/login.component';
-import { DashboardComponent } from './pages/member/dashboard/dashboard.component';
-import { ThemesListComponent } from './pages/themes/themes-list/themes-list.component';
-import { CreateArticleComponent } from './pages/articles/create-article/create-article.component';
-import { PageNotFoundComponent } from './pages/error/page-not-found/page-not-found.component';
-import { ProfilComponent } from './pages/member/profil/profil.component';
-import { ArticleComponent } from './pages/articles/article/article.component';
+import { Routes } from "@angular/router";
+import { HomePage } from "./pages/home/home.component";
+import { MemberRegisterPage } from "./pages/member/register/register.component";
+import { MemberLoginPage } from "./pages/member/login/login.component";
+import { MemberDashboardPage } from "./pages/member/dashboard/dashboard.component";
+import { MemberProfilPage } from "./pages/member/profil/profil.component";
+import { ArticleViewPage } from "./pages/articles/view/view.component";
+import { ArticlesAddPage } from "./pages/articles/add/add.component";
+import { ThemesListPage } from "./pages/themes/list/list.component";
+import { ErrorNotFoundPage } from "./pages/error/not-found/not-found.component";
+
 
 export const routes: Routes = [
-    { path: "", component: HomeComponent },
-    { path: "member/register", component: RegisterComponent },
-    { path: "member/login", component: LoginComponent },
-    { path: "member/dashboard", component: DashboardComponent },
-    { path: "member/profil", component: ProfilComponent},
-    { path: "articles/:id", component: ArticleComponent},
-    { path: "articles/ajouter", component: CreateArticleComponent},
-    { path: "themes", component: ThemesListComponent},
-    { path: "**", component:PageNotFoundComponent }
+    { path: "", component: HomePage },
+    { path: "member/register", component: MemberRegisterPage },
+    { path: "member/login", component: MemberLoginPage },
+    { path: "member/dashboard", component: MemberDashboardPage },
+    { path: "member/profil", component: MemberProfilPage },
+    { path: "articles/:id", component: ArticleViewPage },
+    { path: "articles/add", component: ArticlesAddPage },
+    { path: "themes", component: ThemesListPage },
+    { path: "**", component: ErrorNotFoundPage }
 ];

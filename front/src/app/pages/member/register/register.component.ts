@@ -6,13 +6,13 @@ import { ButtonModule } from "primeng/button";
 import { RouterModule } from "@angular/router";
 
 @Component({
-  selector: "app-register",
+  selector: "app-member-register",
   standalone: true,
   imports: [PageInformationsComponent, FormsModule, InputTextModule, ReactiveFormsModule, ButtonModule, RouterModule],
   templateUrl: "./register.component.html",
   styleUrl: "./register.component.scss"
 })
-export class RegisterComponent {
+export class MemberRegisterPage {
     registerForm: FormGroup;
 
     constructor() {

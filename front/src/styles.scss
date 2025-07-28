@@ -1,3 +1,4 @@
+/* Icons */
 @import "primeicons/primeicons.css";
 
 
@@ -9,10 +10,11 @@
     padding: 0;
 }
 
-/* Content */
+/* Display */
 .hide {
     display: none!important;
 }
+
 
 /* Form */
 .form {
@@ -47,6 +49,7 @@ textarea {
     min-height: 145px;
     resize: vertical;
 }
+
 
 /* Button */
 .button__purple {

@@ -16,13 +16,13 @@ interface Theme {
 
 
 @Component({
-  selector: 'app-create-article',
+  selector: 'app-article-add',
   standalone: true,
   imports: [PageInformationsComponent, CommonModule, FormsModule, InputTextModule, ReactiveFormsModule, ButtonModule, RouterModule, SelectModule, TextareaModule],
-  templateUrl: './create-article.component.html',
-  styleUrl: './create-article.component.scss'
+  templateUrl: './add.component.html',
+  styleUrl: './add.component.scss'
 })
-export class CreateArticleComponent {
+export class ArticlesAddPage {
     articleForm: FormGroup;
 
     constructor() {

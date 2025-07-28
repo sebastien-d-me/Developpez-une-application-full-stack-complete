@@ -9,6 +9,6 @@ import { ButtonModule } from "primeng/button";
     templateUrl: "./home.component.html",
     styleUrl: "./home.component.scss"
 })
-export class HomeComponent {
+export class HomePage {
 
 }
