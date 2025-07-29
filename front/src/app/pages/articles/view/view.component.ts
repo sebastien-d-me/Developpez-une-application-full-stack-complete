@@ -1,54 +1,55 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule, RouterLink } from "@angular/router";
+import { TextareaModule } from "primeng/textarea";
 import { CommentComponent } from "../../../components/articles/comment/comment.component";
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TextareaModule } from 'primeng/textarea';
-import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
 
 
 interface Comment {
     author: string;
-    date: string;
     text: string;
 }
 
 
-
 @Component({
-  selector: 'app-article-view',
-  standalone: true,
-  imports: [CommentComponent, TextareaModule, CommonModule, RouterModule, RouterLink, FormsModule, ReactiveFormsModule],
-  templateUrl: './view.component.html',
-  styleUrl: './view.component.scss'
+    selector: "app-article-view",
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        RouterLink,
+        TextareaModule,
+        CommentComponent],
+    templateUrl: "./view.component.html",
+    styleUrl: "./view.component.scss"
 })
-export class ArticleViewPage {
 
-    commentForm: FormGroup;
 
-    constructor() {
-        this.commentForm = new FormGroup({
-            content: new FormControl("")
-        });
-    }
+export class ArticlesViewPage {
+    /* Create the FormGroup */
+    public commentForm: FormGroup = new FormGroup({
+        text: new FormControl("")
+    });
 
-    comments: Comment[] = [
+
+    /* Load the comments */
+    public comments: Comment[] = [
         {
-            date: "10-07-2025",
             author: "Sébastien D.",
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!"
         },
         {
-            date: "07-07-2025",
             author: "John D.",
             text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, tempore."
         },
         {
-            date: "06-07-2025",
             author: "Sébastien D.",
             text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo recusandae suscipit sint reiciendis dolor facere at, nulla quas repellendus ut."
         },
         {
-            date: "01-07-2025",
             author: "Martin A.",
             text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
         }

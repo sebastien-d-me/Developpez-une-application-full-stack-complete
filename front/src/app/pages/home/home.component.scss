@@ -7,17 +7,20 @@
     min-height: 100vh;
 }
 
+
 /* Logo */
 .home__logo {
     max-width: 100%;
     width: 500px;
 }
 
+
 /* Buttons */
 .home__buttons {
     display: flex;
     gap: 20px;
 }
+
 
 // Responsive
 @media screen and (max-width: 1250px) {

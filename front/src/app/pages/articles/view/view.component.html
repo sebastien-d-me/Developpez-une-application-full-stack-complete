@@ -11,7 +11,7 @@
             <span>Auteur</span>
             <span>Thème</span>
         </div>
-        <p class="article__content">
+        <p class="article__text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit itaque eos saepe doloremque, nostrum cumque!
         </p>
     </div>
@@ -22,7 +22,7 @@
         </div>
         <form class="form" [formGroup]="commentForm">
             <div class="form__column form__column--inline">
-                <textarea cols="30" formControlName="content" name="content" placeholder="Écrivez ici votre commentaire" rows="5" pTextarea></textarea>
+                <textarea cols="30" formControlName="text" name="text" placeholder="Écrivez ici votre commentaire" rows="5" pTextarea></textarea>
                 <a href="#">
                     <i class="pi pi-send"></i>
                 </a>

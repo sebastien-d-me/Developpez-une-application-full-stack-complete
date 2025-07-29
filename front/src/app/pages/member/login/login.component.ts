@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
-import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { InputTextModule } from "primeng/inputtext";
-import { ButtonModule } from "primeng/button";
+import { Component } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
+import { InputTextModule } from "primeng/inputtext";
+import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
+
 
 @Component({
-  selector: 'app-member-login',
-  standalone: true,
-  imports: [PageInformationsComponent, FormsModule, InputTextModule, ReactiveFormsModule, ButtonModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: "app-member-login",
+    standalone: true,
+    imports: [
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        InputTextModule,
+        PageInformationsComponent, 
+    ],
+    templateUrl: "./login.component.html",
+    styleUrl: "./login.component.scss"
 })
-export class MemberLoginPage {
-    loginForm: FormGroup;
 
-    constructor() {
-        this.loginForm = new FormGroup({
-            username: new FormControl(""),
-            password: new FormControl("")
-        });
-    }
+
+export class MemberLoginPage {
+    /* Create the FormGroup */
+    loginForm: FormGroup = new FormGroup({
+        username: new FormControl(""),
+        password: new FormControl("")
+    });
 }

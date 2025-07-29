@@ -1,8 +1,10 @@
+<!-- Header -->
 <app-header *ngIf="!isHomePage" />
 
-
+<!-- Main -->
 <main class="main__block">
     <router-outlet></router-outlet>
 </main>
 
+<!-- Overlay -->
 <div class="hide overlay" (click)="hideMenu()" #overlay></div>

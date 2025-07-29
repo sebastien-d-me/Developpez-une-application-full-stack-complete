@@ -6,24 +6,24 @@
     margin-bottom: 25px;
 }
 
-.left, 
-.right {
+
+/* Layout optimization */
+.left, .right {
     flex: 1;
     width: fit-content;
 }
 
-/* Arrow */
-.page__informations__arrow > .pi-arrow-left {
-    color: #000000;
-}
 
-// Responsive
-@media screen and (max-width: 1250px) {
-    /* Title */
-    .page__informations__title {
-        font-size: 24px;
+/* Arrow */
+.page__informations__arrow {
+    display: flex;
+    text-decoration: none;
+
+    > .pi-arrow-left {
+        color: #000000;
     }
 }
+
 
 // Responsive
 @media screen and (max-width: 1250px) {
