@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ThemeTileComponent } from "../../../components/themes/tile/tile.component";
-import { CommonModule } from '@angular/common';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ButtonModule } from 'primeng/button';
+import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
+import { ThemeTileComponent } from "../../../components/themes/tile/tile.component";
 
 
 interface Theme {
@@ -14,15 +14,31 @@ interface Theme {
 
 
 @Component({
-  selector: 'app-member-profil',
-  standalone: true,
-  imports: [ThemeTileComponent, CommonModule, FormsModule, InputTextModule, ReactiveFormsModule, ButtonModule],
-  templateUrl: './profil.component.html',
-  styleUrl: './profil.component.scss'
+    selector: "app-member-profil",
+    standalone: true,
+    imports: [
+        CommonModule, 
+        FormsModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        InputTextModule,
+        ThemeTileComponent, 
+    ],
+    templateUrl: "./profil.component.html",
+    styleUrl: "./profil.component.scss"
 })
-export class MemberProfilPage {
-    profilForm: FormGroup;
 
+
+export class MemberProfilPage {
+    /* Create the FormGroup */
+    profilForm: FormGroup = new FormGroup({
+        username: new FormControl(""),
+        email: new FormControl(""),
+        password: new FormControl("")
+    });
+
+
+    /* Load the themes */
     themes: Theme[] = [
         {
             title: "Thème 1",
@@ -45,12 +61,4 @@ export class MemberProfilPage {
             isSubscribe: false,
         },
     ];
-
-        constructor() {
-            this.profilForm = new FormGroup({
-                username: new FormControl(""),
-                email: new FormControl(""),
-                password: new FormControl("")
-            });
-        }
 }

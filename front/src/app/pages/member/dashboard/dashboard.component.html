@@ -14,11 +14,11 @@
     <div class="dashboard__articles">
          <app-article-tile
             *ngFor="let article of articles"
-            [author]="article.author"
-            [date]="article.date"
             [id]="article.id"
-            [text]="article.text"
-            [title]="article.title">
+            [title]="article.title"
+            [date]="article.date"
+            [author]="article.author"
+            [text]="article.text">
         </app-article-tile>
     </div>
 </div>

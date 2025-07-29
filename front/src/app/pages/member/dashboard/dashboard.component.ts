@@ -1,28 +1,31 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
-import { ArticleTileComponent } from "../../../components/articles/tile/tile.component";
-import { ButtonModule } from "primeng/button";
+import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
+import { ButtonModule } from "primeng/button";
+import { ArticleTileComponent } from "../../../components/articles/tile/tile.component";
 
 
 interface Article {
+    id: number;
     title: string;
     date: string;
     author: string;
     text: string;
-    id: number;
 }
+
 
 @Component({
   selector: "app-member-dashboard",
   standalone: true,
-  imports: [ArticleTileComponent, CommonModule, ButtonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ButtonModule, ArticleTileComponent],
   templateUrl: "./dashboard.component.html",
   styleUrl: "./dashboard.component.scss"
 })
 
+
 export class MemberDashboardPage {
-    articles: Article[] = [
+    /* Load the articles */
+    public articles: Article[] = [
         {
             id: 1,
             title: "Article 1",
@@ -53,14 +56,12 @@ export class MemberDashboardPage {
         }
     ];
 
-    /* Filter by */
-    @ViewChild("arrowDown") arrowDown!: ElementRef;
-    @ViewChild("arrowUp") arrowUp!: ElementRef;
-    
+
+    /* Filter by */    
     filterBy(type: string) {
-        this.arrowDown.nativeElement.classList.remove("hide");
-        this.arrowUp.nativeElement.classList.remove("hide");
-        type === "old" ? this.arrowDown.nativeElement.classList.add("hide") : this.arrowUp.nativeElement.classList.add("hide");
+        document.querySelector(".pi-arrow-down")?.classList.remove("hide");
+        document.querySelector(".pi-arrow-up")?.classList.remove("hide");
+        type === "old" ? document.querySelector(".pi-arrow-down")?.classList.add("hide") : document.querySelector(".pi-arrow-up")?.classList.add("hide");
         this.articles.reverse();
     }
 }

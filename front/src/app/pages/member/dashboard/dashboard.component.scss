@@ -6,7 +6,8 @@
     margin-bottom: 25px;
 }
 
-/* Filtre */
+
+/* Filter */
 .informations__filter {
     font-weight: bold;
 }
@@ -14,6 +15,7 @@
 .filter__arrow:hover {
     cursor: pointer;
 }
+
 
 /* Articles */
 .dashboard__articles {
@@ -36,6 +38,7 @@ app-article-tile {
         gap: 20px;
     }
 
+    
     /* Articles */
     .dashboard__articles {
         flex-direction: column;
