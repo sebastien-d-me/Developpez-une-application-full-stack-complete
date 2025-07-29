@@ -9,12 +9,14 @@
     width: 100%;
 }
 
+
 /* Logo */
 .header__logo {
     height: 95px;
     object-fit: scale-down;
     width: fit-content;
 }
+
 
 /* Menu */
 .header__menu {
@@ -23,6 +25,8 @@
     gap: 15px;
 }
 
+
+/* Link */
 .header__link {
     color: #000000;
     font-weight: bold;
@@ -36,6 +40,7 @@
         color: #A40F0F;
     }
 } 
+
 
 /* Avatar */
 .header__avatar {
@@ -55,6 +60,7 @@ i.pi.pi-user {
     font-size: 20px;
 }
 
+
 /* Mobile */
 .icon--mobile {
     display: none;
@@ -69,6 +75,7 @@ i.pi.pi-user {
         padding: 0 10x;
     }
 
+
     /* Logo */
     .header__logo {
         height: 80px;
@@ -76,11 +83,13 @@ i.pi.pi-user {
         width: 150px;
     }
 
+
     /* Menu */
     .header__menu {
         display: none;
     }
 
+    
     /* Mobile */
     .icon--mobile {
         display: block;

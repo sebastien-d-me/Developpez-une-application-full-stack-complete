@@ -1,3 +1,4 @@
+<!-- Desktop -->
 <header class="header">
     <img alt="Logo du site" class="header__logo" src="./images/logo.png">
     <nav class="header__menu" *ngIf="isMemberMenu">
@@ -13,7 +14,9 @@
         <i class="pi pi-bars"></i>
     </span>
 </header>
-<div class="hide mobile__pannel" #mobilePannel>
+
+<!-- Mobile -->
+<div class="hide mobile__pannel">
     <div class="mobile__pannel__container">
         <nav class="mobile__pannel__nav" *ngIf="isMemberMenu">
             <a class="header__link logout" href="/member/logout" (click)="hideMenu()">Se déconnecter</a>

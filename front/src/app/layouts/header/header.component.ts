@@ -1,27 +1,30 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component} from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Router, RouterLink, RouterModule } from "@angular/router";
+
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: "app-header",
+    standalone: true,
+    imports: [CommonModule, RouterLink, RouterModule],
+    templateUrl: "./header.component.html",
+    styleUrl: "./header.component.scss"
 })
-export class HeaderComponent {
-    isMemberMenu = false;
 
+
+export class HeaderComponent {
+    /* Manage the header layout */
+    public isMemberMenu: boolean = false;
     constructor(private router: Router) {
         this.router.events.subscribe(() => {
             switch(this.router.url) {
                 case "/":
                     this.isMemberMenu = false;
                     break;
-                case "/register":
+                case "/member/register":
                     this.isMemberMenu = false;
                     break;
-                case "/login":
+                case "/member/login":
                     this.isMemberMenu = false;
                     break;
                 default:
@@ -31,17 +34,18 @@ export class HeaderComponent {
         });
     }
 
+
     /* Open menu */
-    @ViewChild("mobilePannel") mobilePannel!: ElementRef;
     openMenu() {
-        this.mobilePannel.nativeElement.classList.remove("hide");
+        document.querySelector(".mobile__pannel")?.classList.remove("hide");
         document.querySelector(".overlay")?.classList.remove("hide");
     }
 
+
     /* Close menu */
     hideMenu() {
-        if(!this.mobilePannel.nativeElement.classList.contains("hide")) {
-            this.mobilePannel.nativeElement.classList.add("hide");
+        if(!document.querySelector(".mobile__pannel")?.classList.contains("hide")) {
+            document.querySelector(".mobile__pannel")?.classList.add("hide");
             document.querySelector(".overlay")?.classList.add("hide");
         }
     }

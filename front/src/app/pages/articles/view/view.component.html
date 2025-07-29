@@ -18,7 +18,7 @@
     <div class="article__comments">
         <span class="subtitle">Commentaires</span>
         <div class="comments__list">
-            <app-comment *ngFor="let comment of comments" [author]="comment.author" [date]="comment.date"  [text]="comment.text"></app-comment>
+            <app-comment *ngFor="let comment of comments" [author]="comment.author" [text]="comment.text"></app-comment>
         </div>
         <form class="form" [formGroup]="commentForm">
             <div class="form__column form__column--inline">
