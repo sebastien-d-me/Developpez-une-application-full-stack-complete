@@ -1,10 +1,10 @@
-package com.openclassrooms.mddapi;
+package com.sebastiend.mdd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MddApiApplicationTests {
+class MddApplicationTests {
 
 	@Test
 	void contextLoads() {
