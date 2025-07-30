@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, RouterLink } from "@angular/router";
 import { TextareaModule } from "primeng/textarea";
-import { CommentComponent } from "../../../components/articles/comment/comment.component";
+import { CommentComponent } from "../../../components/posts/comment/comment.component";
 
 
 interface Comment {
@@ -13,7 +13,7 @@ interface Comment {
 
 
 @Component({
-    selector: "app-article-view",
+    selector: "app-post-view",
     standalone: true,
     imports: [
         CommonModule,
@@ -28,7 +28,7 @@ interface Comment {
 })
 
 
-export class ArticlesViewPage {
+export class PostsViewPage {
     /* Create the FormGroup */
     public commentForm: FormGroup = new FormGroup({
         text: new FormControl("")

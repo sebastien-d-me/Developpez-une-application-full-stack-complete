@@ -1,5 +1,5 @@
-/* Article */
-.article__tile {
+/* Post */
+.post__tile {
     background-color: #F5F5F5;
     border-radius: 10px;
     padding: 10px;
@@ -8,7 +8,7 @@
 
 
 /* Link */
-.article__link {
+.post__link {
     border-bottom: 1px solid transparent;
     color: #000000;
     display: block;
@@ -23,7 +23,7 @@
 
 
 /* Informations */
-.article__informations {
+.post__informations {
     display: flex;
     gap: 15px 50px;
     margin: 10px 0;
@@ -31,7 +31,7 @@
 
 
 /* Text */
-.article__text {
+.post__text {
     text-align: justify;
 
     &::before {
@@ -42,14 +42,14 @@
 
 // Responsive
 @media screen and (max-width: 1250px) {
-    /* Article */
-    .article__tile {
+    /* Post */
+    .post__tile {
         font-size: 15px;
     }
 
     
     /* Informations */
-    .article__informations {
+    .post__informations {
         flex-wrap: wrap;
         gap: 10px 25px;
         justify-content: start;

@@ -1,0 +1,10 @@
+<div class="topics">
+    <div class="topics__list">
+        <app-topic-tile
+            *ngFor="let topic of topics"
+            [title]="topic.title"
+            [text]="topic.text"
+            [isSubscribe]="topic.isSubscribe">
+        </app-topic-tile>
+    </div>
+</div>

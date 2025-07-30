@@ -1,12 +1,12 @@
 <!-- Informations -->
-<app-page-informations previousURL="/member/dashboard" title="Créer un nouvel article" />
+<app-page-informations previousURL="/user/feed" title="Créer un nouvel article" />
 
 <!-- Login-->
 <div class="login">
-    <form class="form" [formGroup]="articleForm">
+    <form class="form" [formGroup]="postForm">
         <div class="form__column">
-            <label for="theme">Sélectionner un thème :</label>
-            <p-select [options]="themes" optionLabel="name"/>
+            <label for="topic">Sélectionner un thème :</label>
+            <p-select [options]="topics" optionLabel="name"/>
         </div>
 
         <div class="form__column">

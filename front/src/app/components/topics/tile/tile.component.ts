@@ -5,7 +5,7 @@ import { ButtonModule } from "primeng/button";
 
 
 @Component({
-  selector: "app-theme-tile",
+  selector: "app-topic-tile",
   standalone: true,
   imports: [CommonModule, ButtonModule],
   templateUrl: "./tile.component.html",
@@ -13,7 +13,7 @@ import { ButtonModule } from "primeng/button";
 })
 
 
-export class ThemeTileComponent {
+export class TopicTileComponent {
     /* Input */
     @Input() title : string = "";
     @Input() text : string = "";
@@ -23,6 +23,6 @@ export class ThemeTileComponent {
     /* Can unsubscribe check */
     public canUnsubscribe: boolean = false;
     constructor(private router: Router) {
-        this.canUnsubscribe = this.router.url === "/member/profil" ? true : false;
+        this.canUnsubscribe = this.router.url === "/user/profil" ? true : false;
     }
 }

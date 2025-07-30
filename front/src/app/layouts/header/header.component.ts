@@ -21,10 +21,10 @@ export class HeaderComponent {
                 case "/":
                     this.isMemberMenu = false;
                     break;
-                case "/member/register":
+                case "/user/register":
                     this.isMemberMenu = false;
                     break;
-                case "/member/login":
+                case "/user/login":
                     this.isMemberMenu = false;
                     break;
                 default:

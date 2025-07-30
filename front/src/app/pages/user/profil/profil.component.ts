@@ -3,10 +3,10 @@ import { CommonModule } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
-import { ThemeTileComponent } from "../../../components/themes/tile/tile.component";
+import { TopicTileComponent } from "../../../components/topics/tile/tile.component";
 
 
-interface Theme {
+interface Topic {
     title: string;
     text: string;
     isSubscribe: boolean
@@ -22,7 +22,7 @@ interface Theme {
         ReactiveFormsModule,
         ButtonModule,
         InputTextModule,
-        ThemeTileComponent, 
+        TopicTileComponent, 
     ],
     templateUrl: "./profil.component.html",
     styleUrl: "./profil.component.scss"
@@ -38,8 +38,8 @@ export class MemberProfilPage {
     });
 
 
-    /* Load the themes */
-    themes: Theme[] = [
+    /* Load the topics */
+    topics: Topic[] = [
         {
             title: "Thème 1",
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",

@@ -26,13 +26,13 @@
     <!-- Subscriptions -->
     <div class="subscriptions">
         <h2 class="page__subtitle">Abonnements</h2>
-        <div class="themes__list">
-            <app-theme-tile
-                *ngFor="let theme of themes"
-                [title]="theme.title"
-                [text]="theme.text"
-                [isSubscribe]="theme.isSubscribe">
-            </app-theme-tile>
+        <div class="topics__list">
+            <app-topic-tile
+                *ngFor="let topic of topics"
+                [title]="topic.title"
+                [text]="topic.text"
+                [isSubscribe]="topic.isSubscribe">
+            </app-topic-tile>
         </div>
     </div>
 </div>

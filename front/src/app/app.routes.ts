@@ -1,23 +1,23 @@
 import { Routes } from "@angular/router";
 import { HomePage } from "./pages/home/home.component";
-import { MemberRegisterPage } from "./pages/member/register/register.component";
-import { MemberLoginPage } from "./pages/member/login/login.component";
-import { MemberDashboardPage } from "./pages/member/dashboard/dashboard.component";
-import { MemberProfilPage } from "./pages/member/profil/profil.component";
-import { ArticlesAddPage } from "./pages/articles/add/add.component";
-import { ArticlesViewPage } from "./pages/articles/view/view.component";
-import { ThemesListPage } from "./pages/themes/list/list.component";
+import { MemberRegisterPage } from "./pages/user/register/register.component";
+import { MemberLoginPage } from "./pages/user/login/login.component";
+import { MemberFeedPage } from "./pages/user/feed/feed.component";
+import { MemberProfilPage } from "./pages/user/profil/profil.component";
+import { PostsAddPage } from "./pages/posts/add/add.component";
+import { PostsViewPage } from "./pages/posts/view/view.component";
+import { TopicsListPage } from "./pages/topics/list/list.component";
 import { ErrorNotFoundPage } from "./pages/error/not-found/not-found.component";
 
 
 export const routes: Routes = [
     { path: "", component: HomePage },
-    { path: "member/register", component: MemberRegisterPage },
-    { path: "member/login", component: MemberLoginPage },
-    { path: "member/dashboard", component: MemberDashboardPage },
-    { path: "member/profil", component: MemberProfilPage },
-    { path: "articles/add", component: ArticlesAddPage },
-    { path: "articles/:id", component: ArticlesViewPage },
-    { path: "themes", component: ThemesListPage },
+    { path: "user/register", component: MemberRegisterPage },
+    { path: "user/login", component: MemberLoginPage },
+    { path: "user/feed", component: MemberFeedPage },
+    { path: "user/profil", component: MemberProfilPage },
+    { path: "posts/add", component: PostsAddPage },
+    { path: "posts/:id", component: PostsViewPage },
+    { path: "topics", component: TopicsListPage },
     { path: "**", component: ErrorNotFoundPage }
 ];

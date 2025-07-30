@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ThemeTileComponent } from "../../../components/themes/tile/tile.component";
+import { TopicTileComponent } from "../../../components/topics/tile/tile.component";
 
 
-interface Theme {
+interface Topic {
     title: string;
     text: string;
     isSubscribe: boolean
@@ -11,17 +11,17 @@ interface Theme {
 
 
 @Component({
-    selector: "app-themes-list",
+    selector: "app-topics-list",
     standalone: true,
-    imports: [CommonModule, ThemeTileComponent],
+    imports: [CommonModule, TopicTileComponent],
     templateUrl: "./list.component.html",
     styleUrl: "./list.component.scss"
 })
 
 
-export class ThemesListPage {
-    /* Load the themes */
-    public themes: Theme[] = [
+export class TopicsListPage {
+    /* Load the topics */
+    public topics: Topic[] = [
         {
             title: "Thème 1",
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",

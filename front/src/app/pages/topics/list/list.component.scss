@@ -1,5 +1,5 @@
 /* List */
-.themes__list {
+.topics__list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -7,7 +7,7 @@
 
 
 /* Tile */
-app-theme-tile {
+app-topic-tile {
     display: flex;
     flex: 1 0 calc(50% - (20px * 1 / 2));
 }
@@ -16,7 +16,7 @@ app-theme-tile {
 // Responsive
 @media screen and (max-width: 1250px) {
     /* List */
-    .themes__list {
+    .topics__list {
         flex-direction: column;
     }
 }

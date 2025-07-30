@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 
 
 @Component({
-    selector: "app-article-tile",
+    selector: "app-post-tile",
     standalone: true,
     imports: [],
     templateUrl: "./tile.component.html",
@@ -10,7 +10,7 @@ import { Component, Input } from "@angular/core";
 })
 
 
-export class ArticleTileComponent {
+export class PostTileComponent {
     /* Input */
     @Input() title : string = "";
     @Input() date : string = "";
@@ -22,6 +22,6 @@ export class ArticleTileComponent {
     /* On Changes */
     public link: string = "";
     ngOnChanges() {
-        this.link = `/articles/${this.id}`;
+        this.link = `/posts/${this.id}`;
     }
 }

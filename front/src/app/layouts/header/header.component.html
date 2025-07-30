@@ -2,10 +2,10 @@
 <header class="header">
     <img alt="Logo du site" class="header__logo" src="./images/logo.png">
     <nav class="header__menu" *ngIf="isMemberMenu">
-        <a class="header__link logout" href="/member/logout">Se déconnecter</a>
-        <a class="header__link" routerLink="/member/dashboard" routerLinkActive="active">Articles</a>
-        <a class="header__link" routerLink="/themes"  routerLinkActive="active">Thèmes</a>
-        <a class="header__avatar" href="/member/profil">
+        <a class="header__link logout" href="/user/logout">Se déconnecter</a>
+        <a class="header__link" routerLink="/user/feed" routerLinkActive="active">Fil</a>
+        <a class="header__link" routerLink="/topics"  routerLinkActive="active">Thèmes</a>
+        <a class="header__avatar" href="/user/profil">
             <i class="pi pi-user"></i>
         </a>
     </nav>
@@ -19,11 +19,11 @@
 <div class="hide mobile__pannel">
     <div class="mobile__pannel__container">
         <nav class="mobile__pannel__nav" *ngIf="isMemberMenu">
-            <a class="header__link logout" href="/member/logout" (click)="hideMenu()">Se déconnecter</a>
-            <a class="header__link" routerLink="/member/dashboard" routerLinkActive="active" (click)="hideMenu()">Articles</a>
-            <a class="header__link" routerLink="/themes" (click)="hideMenu()" routerLinkActive="active">Thèmes</a>
+            <a class="header__link logout" href="/user/logout" (click)="hideMenu()">Se déconnecter</a>
+            <a class="header__link" routerLink="/user/feed" routerLinkActive="active" (click)="hideMenu()">Fil</a>
+            <a class="header__link" routerLink="/topics" (click)="hideMenu()" routerLinkActive="active">Thèmes</a>
         </nav>
-        <a class="header__avatar" href="/member/profil" (click)="hideMenu()">
+        <a class="header__avatar" href="/user/profil" (click)="hideMenu()">
             <i class="pi pi-user"></i>
         </a>
     </div>

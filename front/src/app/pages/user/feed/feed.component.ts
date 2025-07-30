@@ -2,10 +2,10 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
-import { ArticleTileComponent } from "../../../components/articles/tile/tile.component";
+import { PostTileComponent } from "../../../components/posts/tile/tile.component";
 
 
-interface Article {
+interface Post {
     id: number;
     title: string;
     date: string;
@@ -15,17 +15,17 @@ interface Article {
 
 
 @Component({
-  selector: "app-member-dashboard",
+  selector: "app-member-feed",
   standalone: true,
-  imports: [CommonModule, RouterLink, ButtonModule, ArticleTileComponent],
-  templateUrl: "./dashboard.component.html",
-  styleUrl: "./dashboard.component.scss"
+  imports: [CommonModule, RouterLink, ButtonModule, PostTileComponent],
+  templateUrl: "./feed.component.html",
+  styleUrl: "./feed.component.scss"
 })
 
 
-export class MemberDashboardPage {
-    /* Load the articles */
-    public articles: Article[] = [
+export class MemberFeedPage {
+    /* Load the posts */
+    public posts: Post[] = [
         {
             id: 1,
             title: "Article 1",
@@ -62,6 +62,6 @@ export class MemberDashboardPage {
         document.querySelector(".pi-arrow-down")?.classList.remove("hide");
         document.querySelector(".pi-arrow-up")?.classList.remove("hide");
         type === "old" ? document.querySelector(".pi-arrow-down")?.classList.add("hide") : document.querySelector(".pi-arrow-up")?.classList.add("hide");
-        this.articles.reverse();
+        this.posts.reverse();
     }
 }

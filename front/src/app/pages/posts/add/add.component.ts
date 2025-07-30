@@ -9,14 +9,14 @@ import { TextareaModule } from "primeng/textarea";
 import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
 
 
-interface Theme {
+interface Topic {
     name: string;
     value: string;
 }
 
 
 @Component({
-    selector: "app-article-add",
+    selector: "app-post-add",
     standalone: true,
     imports: [
         CommonModule, 
@@ -34,17 +34,17 @@ interface Theme {
 })
 
 
-export class ArticlesAddPage {
+export class PostsAddPage {
     /* Create the FormGroup */
-    articleForm: FormGroup = new FormGroup({
-        theme: new FormControl(""),
+    postForm: FormGroup = new FormGroup({
+        topic: new FormControl(""),
         title: new FormControl(""),
         content: new FormControl("")
     });
 
 
-    /* Load the themes */
-    themes: Theme[] =  [
+    /* Load the topics */
+    topics: Topic[] =  [
         { name: "Option 1", value: "option-1" },
         { name: "Option 2", value: "option-2" },
         { name: "Option 3", value: "option-3" },
