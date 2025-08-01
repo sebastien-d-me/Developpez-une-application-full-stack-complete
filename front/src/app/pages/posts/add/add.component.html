@@ -6,7 +6,7 @@
     <form class="form" [formGroup]="postForm">
         <div class="form__column">
             <label for="topic">Sélectionner un thème :</label>
-            <p-select [options]="topics" optionLabel="name"/>
+            <p-select [options]="topics" optionLabel="title" optionValue="id_topics" placeholder="Choisir un thème" />
         </div>
 
         <div class="form__column">

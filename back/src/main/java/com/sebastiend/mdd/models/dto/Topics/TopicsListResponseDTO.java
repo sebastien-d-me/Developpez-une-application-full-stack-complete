@@ -12,5 +12,5 @@ import lombok.Data;
 @Data
 public class TopicsListResponseDTO {
     @JsonProperty("topics")
-    private List<TopicEntity> topics;
+    private List<TopicDTO> topics;
 }

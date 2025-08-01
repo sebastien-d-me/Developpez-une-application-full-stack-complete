@@ -2,9 +2,9 @@ package com.sebastiend.mdd.services;
 
 
 import com.sebastiend.mdd.models.dto.Topics.*;
-import com.sebastiend.mdd.models.entities.TopicEntity;
 import com.sebastiend.mdd.repositories.*;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class TopicService {
 
     /* Get all the topics */
     public TopicsListResponseDTO getAll() {
-        List<TopicEntity> topics = topicRepository.findAll();
+        List<TopicDTO> topics = topicRepository.findAll().stream().map(TopicDTO::convertDTO).collect(Collectors.toList());
         return new TopicsListResponseDTO(topics);
     }
 }

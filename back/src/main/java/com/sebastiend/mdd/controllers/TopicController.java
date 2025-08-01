@@ -13,6 +13,7 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
+    
     /* Get all the topics */
     @GetMapping("/api/topics")
     public TopicsListResponseDTO getTopics() {

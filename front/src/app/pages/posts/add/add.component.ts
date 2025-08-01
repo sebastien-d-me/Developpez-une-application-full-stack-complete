@@ -7,13 +7,8 @@ import { InputTextModule } from "primeng/inputtext";
 import { SelectModule } from "primeng/select";
 import { TextareaModule } from "primeng/textarea";
 import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
-
-
-interface Topic {
-    name: string;
-    value: string;
-}
-
+import { TopicsService } from "../../../services/topics/topics.service";
+import { TopicInterface } from "../../../interfaces/Topic";
 
 @Component({
     selector: "app-post-add",
@@ -35,6 +30,10 @@ interface Topic {
 
 
 export class PostsAddPage {
+    /* Call the service */
+    constructor(private topicService: TopicsService) {}
+
+
     /* Create the FormGroup */
     postForm: FormGroup = new FormGroup({
         topic: new FormControl(""),
@@ -44,9 +43,11 @@ export class PostsAddPage {
 
 
     /* Load the topics */
-    topics: Topic[] =  [
-        { name: "Option 1", value: "option-1" },
-        { name: "Option 2", value: "option-2" },
-        { name: "Option 3", value: "option-3" },
-    ];
+    topics: TopicInterface[] = [];
+    
+    ngOnInit() {
+        this.topicService.getTopics().subscribe(data => {
+            this.topics = data.topics;
+        })
+    }
 }

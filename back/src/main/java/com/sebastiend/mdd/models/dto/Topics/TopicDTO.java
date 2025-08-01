@@ -1,10 +1,14 @@
 package com.sebastiend.mdd.models.dto.Topics;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sebastiend.mdd.models.entities.TopicEntity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
+@AllArgsConstructor
 @Data
 public class TopicDTO {
     @JsonProperty("id_topics")
@@ -16,9 +20,19 @@ public class TopicDTO {
     @JsonProperty("content")
     private String content;
 
-    @JsonProperty("created_at")
+    @JsonIgnore
     private String createdAt;
 
-    @JsonProperty("updated_at")
+    @JsonIgnore
     private String updatedAt;
+
+    public static TopicDTO convertDTO(TopicEntity entity) {
+        return new TopicDTO(
+            entity.getIdTopics(), 
+            entity.getTitle(), 
+            entity.getContent(),
+            entity.getCreatedAt(),
+            entity.getUpdatedAt()
+        );
+    }
 }
