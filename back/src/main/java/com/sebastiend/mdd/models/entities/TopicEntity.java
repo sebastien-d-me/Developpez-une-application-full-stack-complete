@@ -11,7 +11,7 @@ import lombok.Data;
 public class TopicEntity {  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "int")
+    @Column(name="id_topics", columnDefinition = "int")
     private Integer idTopics;
 
     @Column(name="title", columnDefinition = "MEDIUMTEXT")

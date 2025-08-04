@@ -4,13 +4,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angul
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { TopicTileComponent } from "../../../components/topics/tile/tile.component";
-
-
-interface Topic {
-    title: string;
-    text: string;
-    isSubscribe: boolean
-}
+import { TopicsService } from "../../../services/topics/topics.service";
+import { TopicInterface } from "../../../interfaces/Topic";
 
 
 @Component({
@@ -30,6 +25,10 @@ interface Topic {
 
 
 export class MemberProfilPage {
+    /* Call the service */
+    constructor(private topicService: TopicsService) {}
+
+
     /* Create the FormGroup */
     profilForm: FormGroup = new FormGroup({
         username: new FormControl(""),
@@ -39,26 +38,11 @@ export class MemberProfilPage {
 
 
     /* Load the topics */
-    topics: Topic[] = [
-        {
-            title: "Thème 1",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: false,
-        },
-        {
-            title: "Thème 2",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: false,
-        },
-        {
-            title: "Thème 3",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: true,
-        },
-        {
-            title: "Thème 4",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: false,
-        },
-    ];
+    topics: TopicInterface[] = [];
+    
+    ngOnInit() {
+        this.topicService.getTopicsForUser(1).subscribe(data => {
+            this.topics = data.topics.filter(topic => topic.subscribe === true);
+        });
+    } 
 }

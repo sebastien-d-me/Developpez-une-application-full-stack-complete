@@ -48,6 +48,6 @@ export class PostsAddPage {
     ngOnInit() {
         this.topicService.getTopics().subscribe(data => {
             this.topics = data.topics;
-        })
+        });
     }
 }

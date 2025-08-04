@@ -1,7 +1,7 @@
 <article class="theme__tile">
     <h2>{{ title }}</h2>
-    <p class="theme__text">{{ text }}</p>
-    <button class="button__purple theme__button" label="S'abonner" pButton *ngIf="!isSubscribe"></button>
-    <button class="button__purple theme__button theme__button--disabled" label="Déjà abonné" pButton *ngIf="isSubscribe && canUnsubscribe === false"></button>
-    <button class="button__purple theme__button theme__button--disabled" label="Se désabonner" pButton *ngIf="isSubscribe && canUnsubscribe === true"></button>
+    <p class="theme__content">{{ content }}</p>
+    <button class="button__purple theme__button" label="S'abonner" pButton *ngIf="!subscribe"></button>
+    <button class="button__purple theme__button theme__button--disabled" label="Déjà abonné" pButton *ngIf="subscribe && canUnsubscribe === false"></button>
+    <button class="button__purple theme__button theme__button--disabled" label="Se désabonner" pButton *ngIf="subscribe && canUnsubscribe === true"></button>
 </article>

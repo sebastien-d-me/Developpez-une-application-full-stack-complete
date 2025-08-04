@@ -26,13 +26,18 @@ public class TopicDTO {
     @JsonIgnore
     private String updatedAt;
 
+    private boolean subscribe;
+
+
+    /* Convert to DTO */
     public static TopicDTO convertDTO(TopicEntity entity) {
         return new TopicDTO(
             entity.getIdTopics(), 
             entity.getTitle(), 
             entity.getContent(),
             entity.getCreatedAt(),
-            entity.getUpdatedAt()
+            entity.getUpdatedAt(),
+            false
         );
     }
 }

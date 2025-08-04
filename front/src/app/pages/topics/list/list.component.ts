@@ -1,13 +1,8 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TopicTileComponent } from "../../../components/topics/tile/tile.component";
-
-
-interface Topic {
-    title: string;
-    text: string;
-    isSubscribe: boolean
-}
+import { TopicsService } from "../../../services/topics/topics.service";
+import { TopicInterface } from "../../../interfaces/Topic";
 
 
 @Component({
@@ -20,27 +15,16 @@ interface Topic {
 
 
 export class TopicsListPage {
+    /* Call the service */
+    constructor(private topicService: TopicsService) {}
+
+
     /* Load the topics */
-    public topics: Topic[] = [
-        {
-            title: "Thème 1",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: false,
-        },
-        {
-            title: "Thème 2",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: false,
-        },
-        {
-            title: "Thème 3",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: true,
-        },
-        {
-            title: "Thème 4",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!",
-            isSubscribe: false,
-        }
-    ];
+    topics: TopicInterface[] = [];
+    
+    ngOnInit() {
+        this.topicService.getTopicsForUser(1).subscribe(data => {
+            this.topics = data.topics;
+        });
+    } 
 }

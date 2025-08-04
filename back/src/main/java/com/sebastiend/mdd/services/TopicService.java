@@ -2,6 +2,7 @@ package com.sebastiend.mdd.services;
 
 
 import com.sebastiend.mdd.models.dto.Topics.*;
+import com.sebastiend.mdd.models.entities.SubscribeEntity;
 import com.sebastiend.mdd.repositories.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +17,34 @@ public class TopicService {
     @Autowired
     private TopicRepository topicRepository;
 
+    @Autowired
+    private SubscribeRepository subscribeRepository;
+
+
     /* Get all the topics */
     public TopicsListResponseDTO getAll() {
-        List<TopicDTO> topics = topicRepository.findAll().stream().map(TopicDTO::convertDTO).collect(Collectors.toList());
+        List<TopicDTO> topics = topicRepository.findAll().stream()
+            .map(TopicDTO::convertDTO)
+            .collect(Collectors.toList());
+            
+        return new TopicsListResponseDTO(topics);
+    }
+
+
+    /* Get the topics for a specifc user */
+    public TopicsListResponseDTO getSubscribed(Integer userId) {
+        List<Integer> allSubscriptions = subscribeRepository.findByIdUser(userId).stream().map(SubscribeEntity::getIdTopics).collect(Collectors.toList());       
+        
+        List<TopicDTO> topics = topicRepository.findAll().stream()
+            .map(topic -> new TopicDTO(
+                topic.getIdTopics(),
+                topic.getTitle(),
+                topic.getContent(),
+                topic.getCreatedAt(),
+                topic.getUpdatedAt(),
+                allSubscriptions.contains(topic.getIdTopics())
+            )).collect(Collectors.toList());
+
         return new TopicsListResponseDTO(topics);
     }
 }

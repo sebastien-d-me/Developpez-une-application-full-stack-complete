@@ -30,8 +30,8 @@
             <app-topic-tile
                 *ngFor="let topic of topics"
                 [title]="topic.title"
-                [text]="topic.text"
-                [isSubscribe]="topic.isSubscribe">
+                [content]="topic.content"
+                [subscribe]="topic.subscribe">
             </app-topic-tile>
         </div>
     </div>

@@ -28,4 +28,10 @@ export class TopicsService {
     public getTopics(): Observable<TopicsResponse> {
         return this.http.get<TopicsResponse>(this.topicsUrl);
     }
+
+
+    /* Get the topics for a specifc user */
+    public getTopicsForUser(userId: number): Observable<TopicsResponse> {
+        return this.http.get<TopicsResponse>(`${this.topicsUrl}/user/${userId}`);
+    }
 }

@@ -16,8 +16,8 @@ import { ButtonModule } from "primeng/button";
 export class TopicTileComponent {
     /* Input */
     @Input() title : string = "";
-    @Input() text : string = "";
-    @Input() isSubscribe : boolean = false;
+    @Input() content : string = "";
+    @Input() subscribe : boolean = false;
 
 
     /* Can unsubscribe check */
