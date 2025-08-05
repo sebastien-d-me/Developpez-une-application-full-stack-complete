@@ -16,14 +16,14 @@ import { TopicInterface } from "../../../interfaces/Topic";
 
 export class TopicsListPage {
     /* Call the service */
-    constructor(private topicService: TopicsService) {}
+    constructor(private topicsService: TopicsService) {}
 
 
     /* Load the topics */
     topics: TopicInterface[] = [];
     
     ngOnInit() {
-        this.topicService.getTopicsForUser(1).subscribe(data => {
+        this.topicsService.getTopicsForUser(1).subscribe(data => {
             this.topics = data.topics;
         });
     } 
@@ -31,7 +31,7 @@ export class TopicsListPage {
 
     /* Subscribe the topic */
     subscribe(topic: TopicInterface) {
-        this.topicService.subscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+        this.topicsService.subscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
             topic.subscribe = true;
         });
     }

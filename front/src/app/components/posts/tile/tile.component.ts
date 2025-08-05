@@ -17,6 +17,7 @@ export class PostTileComponent {
     @Input() author : string = "";
     @Input() text : string = "";
     @Input() id : number = 0;
+    
 
 
     /* On Changes */

@@ -12,13 +12,14 @@
         </div>
     </div>
     <div class="feed__posts">
-         <app-post-tile
+        <span class="center" *ngIf="posts.length === 0">Aucun article n'est disponible.</span>
+        <app-post-tile
             *ngFor="let post of posts"
-            [id]="post.id"
+            [id]="post.id_posts"
             [title]="post.title"
-            [date]="post.date"
-            [author]="post.author"
-            [text]="post.text">
+            [date]="post.updated_at"
+            [author]="post.id_users.username"
+            [text]="post.content">
         </app-post-tile>
     </div>
 </div>

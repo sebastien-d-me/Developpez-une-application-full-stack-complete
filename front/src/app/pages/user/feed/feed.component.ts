@@ -3,15 +3,8 @@ import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { PostTileComponent } from "../../../components/posts/tile/tile.component";
-
-
-interface Post {
-    id: number;
-    title: string;
-    date: string;
-    author: string;
-    text: string;
-}
+import { PostsService } from "../../../services/posts/posts.service";
+import { PostInterface } from "../../../interfaces/Post";
 
 
 @Component({
@@ -24,37 +17,19 @@ interface Post {
 
 
 export class MemberFeedPage {
+    /* Call the service */
+    constructor(private postsService: PostsService) {}
+
+
     /* Load the posts */
-    public posts: Post[] = [
-        {
-            id: 1,
-            title: "Article 1",
-            date: "10-07-2025",
-            author: "Sébastien D.",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!"
-        },
-        {
-            id: 2,
-            title: "Article 2",
-            date: "07-07-2025",
-            author: "John D.",
-            text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, tempore."
-        },
-        {
-            id: 3,
-            title: "Article 3",
-            date: "06-07-2025",
-            author: "Sébastien D.",
-            text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo recusandae suscipit sint reiciendis dolor facere at, nulla quas repellendus ut."
-        },
-        {
-            id: 4,
-            title: "Article 4",
-            date: "01-07-2025",
-            author: "Martin A.",
-            text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
-        }
-    ];
+    posts: PostInterface[] = [];
+    
+    ngOnInit() {
+        this.postsService.getPosts().subscribe(data => {
+            this.posts = data.posts;
+            console.log(this.posts)
+        })
+    }
 
 
     /* Filter by */    

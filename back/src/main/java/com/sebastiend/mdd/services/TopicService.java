@@ -4,9 +4,7 @@ package com.sebastiend.mdd.services;
 import com.sebastiend.mdd.models.dto.Topics.*;
 import com.sebastiend.mdd.models.entities.SubscribeEntity;
 import com.sebastiend.mdd.repositories.*;
-
 import jakarta.transaction.Transactional;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Data;
