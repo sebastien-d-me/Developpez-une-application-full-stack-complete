@@ -47,6 +47,14 @@ export class MemberProfilPage {
     } 
 
 
+    /* Subscribe the topic */
+    subscribe(topic: TopicInterface) {
+        this.topicService.subscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+            topic.subscribe = true;
+        });
+    }
+
+
     /* Unsubscribe the topic */
     unsubscribe(topic: TopicInterface) {
         this.topicService.unsubscribeTopicForUser(topic.id_topics, 1).subscribe(() => {

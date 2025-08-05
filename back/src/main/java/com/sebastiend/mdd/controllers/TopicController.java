@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -28,6 +29,14 @@ public class TopicController {
     @GetMapping("/api/topics/user/{userId}")
     public TopicsListResponseDTO getTopicsForUser(@PathVariable Integer userId) {
         return topicService.getSubscribed(userId);
+    }
+
+
+    /* Subscribe a specific topic for a specifc user */
+    @PostMapping("/api/topics/{topicId}/user/{userId}")
+    public ResponseEntity<Void> subscribeTopicForUser(@PathVariable Integer topicId, @PathVariable Integer userId) {
+        topicService.subscribeTopicForUser(topicId, userId);
+        return ResponseEntity.noContent().build();
     }
 
 

@@ -18,7 +18,8 @@ export class TopicTileComponent {
     @Input() title : string = "";
     @Input() content : string = "";
     @Input() subscribe : boolean = false;
-    @Output() unsubscribe = new EventEmitter<void>();
+    @Output() subscribeBtn = new EventEmitter<void>();
+    @Output() unsubscribeBtn = new EventEmitter<void>();
 
 
     /* Can unsubscribe check */
@@ -28,8 +29,14 @@ export class TopicTileComponent {
     }
 
 
+    /* Call the subscribe click */
+    subscribeTopic() {
+        this.subscribeBtn.emit();
+    }
+
+
     /* Call the unsubscribe click */
     unsubscribeTopic() {
-        this.unsubscribe.emit();
+        this.unsubscribeBtn.emit();
     }
 }

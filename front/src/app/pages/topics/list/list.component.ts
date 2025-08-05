@@ -27,4 +27,12 @@ export class TopicsListPage {
             this.topics = data.topics;
         });
     } 
+
+
+    /* Subscribe the topic */
+    subscribe(topic: TopicInterface) {
+        this.topicService.subscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+            topic.subscribe = true;
+        });
+    }
 }

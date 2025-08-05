@@ -4,7 +4,8 @@
             *ngFor="let topic of topics"
             [title]="topic.title"
             [content]="topic.content"
-            [subscribe]="topic.subscribe">
+            [subscribe]="topic.subscribe"
+            (subscribeBtn)="subscribe(topic)">
         </app-topic-tile>
     </div>
 </div>

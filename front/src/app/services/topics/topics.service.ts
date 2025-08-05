@@ -36,6 +36,12 @@ export class TopicsService {
     }
 
 
+    /* Subscribe a specific topic for a specifc user */
+    public subscribeTopicForUser(topicId: number, userId: number): Observable<void> {
+        return this.http.post<void>(`${this.topicsUrl}/${topicId}/user/${userId}`, {});
+    }
+
+
     /* Unsubscribe a specific topic for a specifc user */
     public unsubscribeTopicForUser(topicId: number, userId: number): Observable<void> {
         return this.http.delete<void>(`${this.topicsUrl}/${topicId}/user/${userId}`);

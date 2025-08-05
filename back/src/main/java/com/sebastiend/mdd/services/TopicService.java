@@ -52,6 +52,16 @@ public class TopicService {
     }
 
 
+    /* Subscribe a specific topic for a specific user */
+    public void subscribeTopicForUser(Integer topicId, Integer userId) {
+        SubscribeEntity subscribeEntity = new SubscribeEntity();
+        subscribeEntity.setUserId(userId);
+        subscribeEntity.setTopicId(topicId);
+
+        subscribeRepository.save(subscribeEntity);
+    }
+
+
     /* Unsubscribe a specific topic for a specific user */
     @Transactional
     public void unsubscribeTopicForUser(Integer topicId, Integer userId) {

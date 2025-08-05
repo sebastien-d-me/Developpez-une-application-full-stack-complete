@@ -33,7 +33,8 @@
                 [title]="topic.title"
                 [content]="topic.content"
                 [subscribe]="topic.subscribe"
-                (unsubscribe)="unsubscribe(topic)">
+                (subscribeBtn)="subscribe(topic)"
+                (unsubscribeBtn)="unsubscribe(topic)">
             </app-topic-tile>
         </div>
     </div>
