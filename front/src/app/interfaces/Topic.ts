@@ -1,5 +1,5 @@
 export interface TopicInterface {
-    id: number;
+    id_topics: number;
     title: string;
     content: string;
     subscribe: boolean;

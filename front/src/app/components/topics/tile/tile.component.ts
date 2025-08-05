@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 
@@ -14,15 +14,22 @@ import { ButtonModule } from "primeng/button";
 
 
 export class TopicTileComponent {
-    /* Input */
+    /* Input  & Output */
     @Input() title : string = "";
     @Input() content : string = "";
     @Input() subscribe : boolean = false;
+    @Output() unsubscribe = new EventEmitter<void>();
 
 
     /* Can unsubscribe check */
     public canUnsubscribe: boolean = false;
     constructor(private router: Router) {
         this.canUnsubscribe = this.router.url === "/user/profil" ? true : false;
+    }
+
+
+    /* Call the unsubscribe click */
+    unsubscribeTopic() {
+        this.unsubscribe.emit();
     }
 }

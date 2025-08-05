@@ -12,7 +12,7 @@ public class TopicEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_topics", columnDefinition = "int")
-    private Integer idTopics;
+    private Integer topicId;
 
     @Column(name="title", columnDefinition = "MEDIUMTEXT")
     private String title;

@@ -4,6 +4,9 @@ package com.sebastiend.mdd.services;
 import com.sebastiend.mdd.models.dto.Topics.*;
 import com.sebastiend.mdd.models.entities.SubscribeEntity;
 import com.sebastiend.mdd.repositories.*;
+
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Data;
@@ -33,18 +36,25 @@ public class TopicService {
 
     /* Get the topics for a specifc user */
     public TopicsListResponseDTO getSubscribed(Integer userId) {
-        List<Integer> allSubscriptions = subscribeRepository.findByIdUser(userId).stream().map(SubscribeEntity::getIdTopics).collect(Collectors.toList());       
+        List<Integer> allSubscriptions = subscribeRepository.findByUserId(userId).stream().map(SubscribeEntity::getTopicId).collect(Collectors.toList());       
         
         List<TopicDTO> topics = topicRepository.findAll().stream()
             .map(topic -> new TopicDTO(
-                topic.getIdTopics(),
+                topic.getTopicId(),
                 topic.getTitle(),
                 topic.getContent(),
                 topic.getCreatedAt(),
                 topic.getUpdatedAt(),
-                allSubscriptions.contains(topic.getIdTopics())
+                allSubscriptions.contains(topic.getTopicId())
             )).collect(Collectors.toList());
 
         return new TopicsListResponseDTO(topics);
+    }
+
+
+    /* Unsubscribe a specific topic for a specific user */
+    @Transactional
+    public void unsubscribeTopicForUser(Integer topicId, Integer userId) {
+        subscribeRepository.deleteByTopicIdAndUserId(topicId, userId);
     }
 }

@@ -27,11 +27,13 @@
     <div class="subscriptions">
         <h2 class="page__subtitle">Abonnements</h2>
         <div class="topics__list">
+            <span class="center" *ngIf="topics.length === 0">Consultez la page des thèmes pour avoir des abonnements.</span>
             <app-topic-tile
                 *ngFor="let topic of topics"
                 [title]="topic.title"
                 [content]="topic.content"
-                [subscribe]="topic.subscribe">
+                [subscribe]="topic.subscribe"
+                (unsubscribe)="unsubscribe(topic)">
             </app-topic-tile>
         </div>
     </div>

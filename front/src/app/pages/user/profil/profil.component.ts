@@ -45,4 +45,12 @@ export class MemberProfilPage {
             this.topics = data.topics.filter(topic => topic.subscribe === true);
         });
     } 
+
+
+    /* Unsubscribe the topic */
+    unsubscribe(topic: TopicInterface) {
+        this.topicService.unsubscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+            topic.subscribe = false;
+        });
+    }
 }

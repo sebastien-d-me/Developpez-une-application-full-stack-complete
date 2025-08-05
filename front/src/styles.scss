@@ -11,6 +11,12 @@
 }
 
 /* Display */
+.center {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
 .hide {
     display: none!important;
 }

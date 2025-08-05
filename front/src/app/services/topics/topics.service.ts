@@ -34,4 +34,10 @@ export class TopicsService {
     public getTopicsForUser(userId: number): Observable<TopicsResponse> {
         return this.http.get<TopicsResponse>(`${this.topicsUrl}/user/${userId}`);
     }
+
+
+    /* Unsubscribe a specific topic for a specifc user */
+    public unsubscribeTopicForUser(topicId: number, userId: number): Observable<void> {
+        return this.http.delete<void>(`${this.topicsUrl}/${topicId}/user/${userId}`);
+    }
 }

@@ -15,8 +15,8 @@ public class SubscribeEntity {
     private Integer idSubscribe;
 
     @Column(name="id_users", columnDefinition = "int")
-    private Integer idUser;
+    private Integer userId;
 
     @Column(name="id_topics", columnDefinition =  "int")
-    private Integer idTopics;
+    private Integer topicId;
 }

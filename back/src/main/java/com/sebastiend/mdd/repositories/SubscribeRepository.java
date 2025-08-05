@@ -9,5 +9,7 @@ import java.util.List;
 
 @Repository
 public interface SubscribeRepository extends JpaRepository<SubscribeEntity, Integer> {
-    List<SubscribeEntity> findByIdUser(Integer userId);
+    List<SubscribeEntity> findByUserId(Integer userId);
+
+    void deleteByTopicIdAndUserId(Integer topicId, Integer userId);
 }
