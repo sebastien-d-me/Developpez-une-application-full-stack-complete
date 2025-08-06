@@ -1,10 +1,11 @@
 import { Component, Input } from "@angular/core";
+import { DatePipe } from "@angular/common";
 
 
 @Component({
     selector: "app-post-tile",
     standalone: true,
-    imports: [],
+    imports: [DatePipe],
     templateUrl: "./tile.component.html",
     styleUrl: "./tile.component.scss"
 })
