@@ -4,16 +4,14 @@
             <a class="page__informations__arrow" routerLink="/user/feed">
                 <i class="pi pi-arrow-left"></i>
             </a>
-            <h2>Titre de l'article sélectionné</h2>
+            <h2>{{post.title}}</h2>
         </div>
         <div class="post__informations">
-            <span>Date</span>
-            <span>Auteur</span>
-            <span>Thème</span>
+            <span>{{post.updated_at | date: "d MMM y à H:mm" }}</span>
+            <span>{{post.author}}</span>
+            <span>{{post.topic}}</span>
         </div>
-        <p class="post__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit itaque eos saepe doloremque, nostrum cumque!
-        </p>
+        <p class="post__text">{{post.content}}</p>
     </div>
     <div class="post__comments">
         <span class="subtitle">Commentaires</span>

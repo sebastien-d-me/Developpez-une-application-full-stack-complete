@@ -29,11 +29,11 @@ public class PostDTO {
     @JsonProperty("updated_at")
     private String updatedAt;
 
-    @JsonProperty("id_users")
-    private UserEntity user;
+    @JsonProperty("author")
+    private String userUsername;
 
-    @JsonProperty("id_topics")
-    private TopicEntity topic;
+    @JsonProperty("topic")
+    private String topicTitle;
 
 
     /* Convert to DTO */
@@ -44,8 +44,8 @@ public class PostDTO {
             entity.getContent(),
             entity.getCreatedAt(),
             entity.getUpdatedAt(),
-            entity.getUser(),
-            entity.getTopic()
+            entity.getUser().getUsername(),
+            entity.getTopic().getTitle()
         );
     }
 }

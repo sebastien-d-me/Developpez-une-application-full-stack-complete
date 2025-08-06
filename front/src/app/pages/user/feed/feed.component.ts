@@ -27,7 +27,6 @@ export class MemberFeedPage {
     ngOnInit() {
         this.postsService.getPosts().subscribe(data => {
             this.posts = data.posts;
-            console.log(this.posts)
         })
     }
 

@@ -28,4 +28,10 @@ export class PostsService {
     public getPosts(): Observable<PostsResponse> {
         return this.http.get<PostsResponse>(this.postsUrl);
     }
+
+
+    /* Get a specific post */
+    public getPost(postId: string|null): Observable<PostInterface> {
+        return this.http.get<PostInterface>(`${this.postsUrl}/${postId}`);
+    }
 }

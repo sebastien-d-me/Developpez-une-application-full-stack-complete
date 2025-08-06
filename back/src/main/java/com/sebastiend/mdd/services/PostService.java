@@ -3,6 +3,7 @@ package com.sebastiend.mdd.services;
 
 import com.sebastiend.mdd.models.dto.Posts.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,11 @@ public class PostService {
             .collect(Collectors.toList());
             
         return new PostsListResponseDTO(posts);
+    }
+
+
+    /* Get a specific post */
+    public Optional<PostDTO> getPost(final Integer idPost) {
+        return postRepository.findById(idPost).map(post -> PostDTO.convertDTO(post));
     }
 }
