@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le : mer. 30 juil. 2025 à 18:11
+-- Généré le : lun. 11 août 2025 à 18:10
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.2.0
 
@@ -48,17 +48,17 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
-  `id_posts` int NOT NULL,
+  `id_posts` int NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `content` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `id_users` int NOT NULL,
   `id_topics` int NOT NULL,
   PRIMARY KEY (`id_posts`),
   KEY `Posts_Users_FK` (`id_users`),
   KEY `Posts_Topics0_FK` (`id_topics`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -68,11 +68,13 @@ CREATE TABLE IF NOT EXISTS `posts` (
 
 DROP TABLE IF EXISTS `subscribe`;
 CREATE TABLE IF NOT EXISTS `subscribe` (
+  `id_subscribe` int NOT NULL AUTO_INCREMENT,
   `id_users` int NOT NULL,
   `id_topics` int NOT NULL,
-  PRIMARY KEY (`id_users`,`id_topics`),
-  KEY `Subscribe_Topics0_FK` (`id_topics`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id_subscribe`),
+  KEY `idx_id_users` (`id_users`),
+  KEY `idx_id_topics` (`id_topics`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -85,10 +87,18 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `id_topics` int NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `content` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `updated_at` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_topics`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `topics`
+--
+
+INSERT INTO `topics` (`id_topics`, `title`, `content`, `created_at`, `updated_at`) VALUES
+(1, 'Hardware', 'Regroupe le contenu lié aux matériels informatique.', '2025-08-11 17:47:06', '2025-08-11 17:47:06'),
+(2, 'Développement web', 'Contient des tutoriels de développement web.', '2025-08-11 17:47:06', '2025-08-11 17:47:06');
 
 -- --------------------------------------------------------
 
@@ -102,10 +112,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `email_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `updated_at` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_users`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Contraintes pour les tables déchargées

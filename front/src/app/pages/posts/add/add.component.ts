@@ -9,6 +9,7 @@ import { TextareaModule } from "primeng/textarea";
 import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
 import { TopicsService } from "../../../services/topics/topics.service";
 import { TopicInterface } from "../../../interfaces/Topic";
+import { PostsService } from "../../../services/posts/posts.service";
 
 @Component({
     selector: "app-post-add",
@@ -31,7 +32,7 @@ import { TopicInterface } from "../../../interfaces/Topic";
 
 export class PostsAddPage {
     /* Call the service */
-    constructor(private topicService: TopicsService) {}
+    constructor(private topicService: TopicsService, private postService : PostsService) {}
 
 
     /* Create the FormGroup */
@@ -48,6 +49,23 @@ export class PostsAddPage {
     ngOnInit() {
         this.topicService.getTopics().subscribe(data => {
             this.topics = data.topics;
+        });
+    }
+
+
+    /* Submit the form */
+    showMessage: boolean = false;
+
+    onSubmit() {
+        const data = {
+            "topic": this.postForm.get("topic")?.value,
+            "title": this.postForm.get("title")?.value,
+            "content": this.postForm.get("content")?.value,
+            "user": 1
+        }
+        this.postService.publishPost(data).subscribe(event => {
+            // vider le formulaire
+            this.showMessage = true;
         });
     }
 }

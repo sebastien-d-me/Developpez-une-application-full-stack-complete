@@ -12,7 +12,7 @@ public class SubscribeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_subscribe", columnDefinition = "int")
-    private Integer idSubscribe;
+    private Integer subscribeId;
 
     @Column(name="id_users", columnDefinition = "int")
     private Integer userId;

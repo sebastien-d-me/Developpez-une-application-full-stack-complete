@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { PostInterface } from "../../interfaces/Post";
-
+import { PostsRequest } from "../../interfaces/PostsRequest";
 
 interface PostsResponse {
     posts: PostInterface[];
@@ -33,5 +33,11 @@ export class PostsService {
     /* Get a specific post */
     public getPost(postId: string|null): Observable<PostInterface> {
         return this.http.get<PostInterface>(`${this.postsUrl}/${postId}`);
+    }
+
+
+    /* Publish a post */
+    public publishPost(postRequest: PostsRequest): Observable<void> {
+        return this.http.post<void>(this.postsUrl, postRequest);
     }
 }

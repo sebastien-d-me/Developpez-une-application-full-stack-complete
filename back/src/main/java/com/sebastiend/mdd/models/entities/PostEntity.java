@@ -1,6 +1,7 @@
 package com.sebastiend.mdd.models.entities;
 
 
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,10 +22,10 @@ public class PostEntity {
     private String content;
 
     @Column(name="created_at")
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name="updated_at")
-    private String updatedAt;
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "id_users", referencedColumnName = "id_users", columnDefinition = "int")

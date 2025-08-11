@@ -1,12 +1,12 @@
 <!-- Informations -->
 <app-page-informations previousURL="/user/feed" title="Créer un nouvel article" />
 
-<!-- Login-->
-<div class="login">
-    <form class="form" [formGroup]="postForm">
+<!-- Add a post-->
+<div class="post__form">
+    <form class="form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
         <div class="form__column">
             <label for="topic">Sélectionner un thème :</label>
-            <p-select [options]="topics" optionLabel="title" optionValue="id_topics" placeholder="Choisir un thème" />
+            <p-select formControlName="topic" [options]="topics" name="topic" optionLabel="title" optionValue="id_topics" placeholder="Choisir un thème" />
         </div>
 
         <div class="form__column">
@@ -20,7 +20,8 @@
         </div>
 
         <div class="form__column">
-            <button class="button__purple" label="Créer" pButton></button>
+            <button class="button__purple" label="Créer" pButton type="submit"></button>
         </div>
     </form>
+    <span class="message" *ngIf="showMessage">L'article a bien été crée.</span>
 </div>

@@ -11,7 +11,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class PostDTO {
+public class PostCreateDTO {
     @JsonProperty("id_posts")
     private Integer id;
 
@@ -27,23 +27,23 @@ public class PostDTO {
     @JsonProperty("updated_at")
     private LocalDateTime updatedAt;
 
-    @JsonProperty("author")
-    private String userUsername;
+    @JsonProperty("user")
+    private Integer user;
 
     @JsonProperty("topic")
-    private String topicTitle;
+    private Integer topic;
 
 
     /* Convert to DTO */
-    public static PostDTO convertDTO(PostEntity entity) {
-        return new PostDTO(
+    public static PostCreateDTO convertDTO(PostEntity entity) {
+        return new PostCreateDTO(
             entity.getPostId(), 
             entity.getTitle(), 
             entity.getContent(),
             entity.getCreatedAt(),
             entity.getUpdatedAt(),
-            entity.getUser().getUsername(),
-            entity.getTopic().getTitle()
+            entity.getUser().getUserId(),
+            entity.getTopic().getTopicId()
         );
     }
 }
