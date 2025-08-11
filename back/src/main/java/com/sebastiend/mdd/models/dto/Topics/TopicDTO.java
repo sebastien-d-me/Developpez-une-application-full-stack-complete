@@ -32,7 +32,7 @@ public class TopicDTO {
     /* Convert to DTO */
     public static TopicDTO convertDTO(TopicEntity entity) {
         return new TopicDTO(
-            entity.getTopicId(), 
+            entity.getId(), 
             entity.getTitle(), 
             entity.getContent(),
             entity.getCreatedAt(),

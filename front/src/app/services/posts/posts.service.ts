@@ -40,4 +40,9 @@ export class PostsService {
     public publishPost(postRequest: PostsRequest): Observable<void> {
         return this.http.post<void>(this.postsUrl, postRequest);
     }
+
+    /* Get all post where user is subscribed */
+    public getPostsWhereSubscribed(topicIds: number[]): Observable<PostsResponse> {
+        return this.http.post<PostsResponse>("/api/posts/subscribed", topicIds);
+    }
 }

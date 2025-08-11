@@ -65,4 +65,14 @@ public class PostService {
 
         return new PostResponseDTO("Le post a été publié");
     }
+
+
+    /* Get all post where user is subscribed */
+    public PostsListResponseDTO getPostsWhereSubscribed(List<Integer> topicIds) {
+        List<PostDTO> posts = postRepository.findAllByTopic_IdIn(topicIds).stream()
+            .map(PostDTO::convertDTO)
+            .collect(Collectors.toList());
+
+        return new PostsListResponseDTO(posts);
+    }
 }

@@ -38,12 +38,12 @@ public class TopicService {
         
         List<TopicDTO> topics = topicRepository.findAll().stream()
             .map(topic -> new TopicDTO(
-                topic.getTopicId(),
+                topic.getId(),
                 topic.getTitle(),
                 topic.getContent(),
                 topic.getCreatedAt(),
                 topic.getUpdatedAt(),
-                allSubscriptions.contains(topic.getTopicId())
+                allSubscriptions.contains(topic.getId())
             )).collect(Collectors.toList());
 
         return new TopicsListResponseDTO(topics);

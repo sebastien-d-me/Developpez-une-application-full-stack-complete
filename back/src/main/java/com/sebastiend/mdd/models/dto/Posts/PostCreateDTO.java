@@ -43,7 +43,7 @@ public class PostCreateDTO {
             entity.getCreatedAt(),
             entity.getUpdatedAt(),
             entity.getUser().getUserId(),
-            entity.getTopic().getTopicId()
+            entity.getTopic().getId()
         );
     }
 }
