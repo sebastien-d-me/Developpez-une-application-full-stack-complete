@@ -63,6 +63,7 @@
     gap: 25px 0;
     max-width: 800px;
     margin: auto;
+    width: 100%;
 }
 
 i.pi.pi-send {
@@ -80,7 +81,7 @@ i.pi.pi-send {
 @media screen and (max-width: 1250px) {
     /* Comments */
     .comments__list {
-        max-width: unset;
+        max-width: 80%;
     }
 
     i.pi.pi-send {

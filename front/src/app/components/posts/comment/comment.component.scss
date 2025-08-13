@@ -1,15 +1,21 @@
 /* Comment */
 .comment {
-    align-items: center;
     display: flex;
+    flex: 1 0;
     gap: 5px 20px;
     justify-content: space-between;
+    width: 100%;
 }
 
+app-comment {
+    display: flex;
+    flex: 1 0;
+    width: 100%;
+}
 
 /* Author */
 .comment__author {
-    max-width: 20%;
+    display: flex;
 }
 
 
@@ -19,8 +25,9 @@
     background-color: #EEEEEE;
     border-radius: 5px;
     display: flex;
+    flex: 1 0;
     padding: 15px;
-    width: 80%;
+    width: 100%;
 }
 
 

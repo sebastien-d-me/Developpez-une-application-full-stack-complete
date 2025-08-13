@@ -6,6 +6,8 @@ import { TextareaModule } from "primeng/textarea";
 import { CommentComponent } from "../../../components/posts/comment/comment.component";
 import { PostsService } from "../../../services/posts/posts.service";
 import { PostInterface } from "../../../interfaces/Post";
+import { CommentsInterface } from "../../../interfaces/Comments";
+import { CommentsService } from "../../../services/comments/comments.service";
 
 
 interface Comment {
@@ -38,7 +40,9 @@ export class PostsViewPage {
     /* Call the service */
     constructor(
         private route: ActivatedRoute, 
-        private postService: PostsService) {}
+        private postService: PostsService,
+        private commentsService: CommentsService    
+    ) {}
 
 
     /* Create the FormGroup */
@@ -48,25 +52,7 @@ export class PostsViewPage {
 
 
     /* Load the comments */
-    public comments: Comment[] = [
-        {
-            author: "Sébastien D.",
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatum? Maxime totam assumenda sunt aliquam!"
-        },
-        {
-            author: "John D.",
-            text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, tempore."
-        },
-        {
-            author: "Sébastien D.",
-            text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo recusandae suscipit sint reiciendis dolor facere at, nulla quas repellendus ut."
-        },
-        {
-            author: "Martin A.",
-            text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit."
-        }
-    ];
-
+    comments: CommentsInterface[] = [];
 
     /* Load the post */   
     post!: PostInterface;
@@ -75,6 +61,10 @@ export class PostsViewPage {
         this.idPost = this.route.snapshot.paramMap.get("id");
         this.postService.getPost(this.idPost).subscribe(data => {
             this.post = data;
+        });
+
+        this.commentsService.getCommentsOfPost(this.idPost).subscribe(data => {
+            this.comments = data.comments;
         });
     } 
 }

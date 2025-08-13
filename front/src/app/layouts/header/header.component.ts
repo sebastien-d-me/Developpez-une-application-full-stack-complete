@@ -27,6 +27,9 @@ export class HeaderComponent {
                 case "/user/login":
                     this.isMemberMenu = false;
                     break;
+                case "/404":
+                    this.isMemberMenu = false;
+                    break;
                 default:
                     this.isMemberMenu = true;
                     break;

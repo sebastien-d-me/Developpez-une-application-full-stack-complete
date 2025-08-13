@@ -31,7 +31,6 @@ export class MemberFeedPage {
             const topicIds = subscribedTopics.map(topic => topic.id_topics);
 
             this.postsService.getPostsWhereSubscribed(topicIds).subscribe(data => {
-                console.log(data);
                 this.posts = data.posts;
             });
         });

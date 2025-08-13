@@ -19,5 +19,6 @@ export const routes: Routes = [
     { path: "posts/add", component: PostsAddPage },
     { path: "posts/:id", component: PostsViewPage },
     { path: "topics", component: TopicsListPage },
-    { path: "**", component: ErrorNotFoundPage }
+    { path: "404", component: ErrorNotFoundPage },
+    { path: "**", redirectTo: "/404" }
 ];
