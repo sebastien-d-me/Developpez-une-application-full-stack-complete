@@ -76,6 +76,15 @@ i.pi.pi-send {
     }
 }
 
+.button__submit__comment {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 
 // Responsive
 @media screen and (max-width: 1250px) {

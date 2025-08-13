@@ -19,13 +19,14 @@
             <app-comment *ngFor="let comment of comments" [author]="comment.author" [text]="comment.content"></app-comment>
             <span *ngIf="comments.length === 0">Aucun commentaire pour le moment.</span>
         </div>
-        <form class="form" [formGroup]="commentForm">
+        <form class="form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
             <div class="form__column form__column--inline">
-                <textarea cols="30" formControlName="text" name="text" placeholder="Écrivez ici votre commentaire" rows="5" pTextarea></textarea>
-                <a href="#">
+                <textarea cols="30" formControlName="content" name="text" placeholder="Écrivez ici votre commentaire" rows="5" pTextarea></textarea>
+                <button class="button__submit__comment" type="submit">
                     <i class="pi pi-send"></i>
-                </a>
+                </button>
             </div>
         </form>
+        <span class="message" *ngIf="showMessage">Le commentaire a bien été crée.</span>
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { CommentsInterface } from "../../interfaces/Comments";
+import { CommentsRequest } from "../../interfaces/CommentsRequest";
 
 interface CommentsResponse {
     comments: CommentsInterface[];
@@ -26,5 +27,10 @@ export class CommentsService {
     /* Get all the comments from a specific post */
     public getCommentsOfPost(postId: string|null): Observable<CommentsResponse> {
         return this.http.get<CommentsResponse>(`${this.commentsUrl}/${postId}`);
+    }
+
+    /* Comment a post */
+    public publishComment(commentsRequest: CommentsRequest): Observable<void> {
+        return this.http.post<void>(this.commentsUrl, commentsRequest);
     }
 }

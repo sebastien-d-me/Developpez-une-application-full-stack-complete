@@ -7,13 +7,8 @@ import { CommentComponent } from "../../../components/posts/comment/comment.comp
 import { PostsService } from "../../../services/posts/posts.service";
 import { PostInterface } from "../../../interfaces/Post";
 import { CommentsInterface } from "../../../interfaces/Comments";
+import { CommentsRequest } from "../../../interfaces/CommentsRequest";
 import { CommentsService } from "../../../services/comments/comments.service";
-
-
-interface Comment {
-    author: string;
-    text: string;
-}
 
 
 @Component({
@@ -46,8 +41,8 @@ export class PostsViewPage {
 
 
     /* Create the FormGroup */
-    public commentForm: FormGroup = new FormGroup({
-        text: new FormControl("")
+    commentForm: FormGroup = new FormGroup({
+        content: new FormControl("")
     });
 
 
@@ -67,4 +62,19 @@ export class PostsViewPage {
             this.comments = data.comments;
         });
     } 
+
+    /* Submit the form */
+    showMessage: boolean = false;
+
+    onSubmit() {
+        const data = {
+            "postId": Number(this.idPost),
+            "content": this.commentForm.get("content")?.value,
+            "user": 1
+        }
+        this.commentsService.publishComment(data).subscribe(event => {
+            // vider le formulaire
+            this.showMessage = true;
+        });
+    }
 }
