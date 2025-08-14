@@ -1,0 +1,17 @@
+0. Vider les formulaires quand envoie + refresh;
+1. Fonctionnalités d'authentification : Inscription, Connexion, Consulter son profil, Modifier son profil et Déconnexion;
+2. Mettre dans le fil d'actualité du plus récent au plus ancien des articles;
+3. Sécuriser le back-end avec Spring Security;
+4. Documenter le code;
+5. Tester le responsive;
+6. Mettre les bonnes pratiques + vérifications des champs des formulaires;
+7. Nettoyer le code;
+8. Tester l'application entière;
+9. Vérifier la conformité fonctionnelles;
+10. Vérifier la conformité technique;
+11. Vérifier les maquettes;
+12. Rédiger le README détaillé;
+13. Finaliser le template du document;
+14. Réaliser le diaporama de soutenance;
+15. Mettre en ligne les livrables;
+16. Passer la soutenance;

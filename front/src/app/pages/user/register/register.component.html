@@ -3,7 +3,7 @@
 
 <!-- Register -->
 <div class="register">
-    <form class="form" [formGroup]="registerForm">
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form__column">
             <label for="username">Nom d'utilisateur :</label>
             <input formControlName="username" id="username" name="username" pInputText type="text" />
@@ -23,4 +23,5 @@
             <button class="button__purple" label="S'inscrire" pButton></button>
         </div>
     </form>
+    <span class="message" *ngIf="showMessage">Le compte a bien été crée.</span>
 </div>
