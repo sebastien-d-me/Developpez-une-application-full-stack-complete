@@ -3,10 +3,10 @@
 
 <!-- Login -->
 <div class="login">
-    <form class="form" [formGroup]="loginForm">
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form__column">
-            <label for="username">Email ou nom d'utilisateur :</label>
-            <input formControlName="username" id="username" name="username" pInputText type="text" />
+            <label for="usernameOrMail">Email ou nom d'utilisateur :</label>
+            <input formControlName="usernameOrMail" id="usernameOrMail" name="usernameOrMail" pInputText type="text" />
         </div>
 
         <div class="form__column">

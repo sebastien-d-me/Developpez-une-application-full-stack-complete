@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class UserService {
 
 
     /* Get the API URL */
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         this.userUrl = "/api/users";
     }
 
@@ -27,5 +28,11 @@ export class UserService {
     /* Login */
     public login(user: any): Observable<any> {
         return this.http.post<any>(`${this.userUrl}/login`, user);
+    }
+
+
+    /* Logout */
+    public logout(): void {
+        localStorage.removeItem("token");
     }
 }

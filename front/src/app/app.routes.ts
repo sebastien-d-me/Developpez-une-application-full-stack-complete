@@ -8,17 +8,20 @@ import { PostsAddPage } from "./pages/posts/add/add.component";
 import { PostsViewPage } from "./pages/posts/view/view.component";
 import { TopicsListPage } from "./pages/topics/list/list.component";
 import { ErrorNotFoundPage } from "./pages/error/not-found/not-found.component";
+import { AuthGuard } from "./guards/auth.guard";
+import { MemberLogoutPage } from "./pages/user/logout/logout.component";
 
 
 export const routes: Routes = [
     { path: "", component: HomePage },
     { path: "user/register", component: MemberRegisterPage },
     { path: "user/login", component: MemberLoginPage },
-    { path: "user/feed", component: MemberFeedPage },
-    { path: "user/profil", component: MemberProfilPage },
-    { path: "posts/add", component: PostsAddPage },
-    { path: "posts/:id", component: PostsViewPage },
-    { path: "topics", component: TopicsListPage },
+    { path: "user/logout", component: MemberLogoutPage, canActivate: [AuthGuard] },
+    { path: "user/feed", component: MemberFeedPage, canActivate: [AuthGuard] },
+    { path: "user/profil", component: MemberProfilPage, canActivate: [AuthGuard] },
+    { path: "posts/add", component: PostsAddPage, canActivate: [AuthGuard] },
+    { path: "posts/:id", component: PostsViewPage, canActivate: [AuthGuard] },
+    { path: "topics", component: TopicsListPage, canActivate: [AuthGuard] },
     { path: "404", component: ErrorNotFoundPage },
     { path: "**", redirectTo: "/404" }
 ];

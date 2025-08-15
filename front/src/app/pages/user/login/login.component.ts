@@ -5,6 +5,7 @@ import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
 import { UserService } from "../../../services/user/user.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -25,11 +26,11 @@ import { UserService } from "../../../services/user/user.service";
 
 export class MemberLoginPage {
     /* Call the service */
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private router: Router) {}
 
     /* Create the FormGroup */
     loginForm: FormGroup = new FormGroup({
-        username: new FormControl(""),
+        usernameOrMail: new FormControl(""),
         password: new FormControl("")
     });
 
@@ -39,12 +40,14 @@ export class MemberLoginPage {
 
     onSubmit() {
         const data = {
-            "username": this.loginForm.get("topic")?.value,
-            "password": this.loginForm.get("content")?.value,
+            "usernameOrMail": this.loginForm.get("usernameOrMail")?.value,
+            "password": this.loginForm.get("password")?.value,
         }
-        this.userService.register(data).subscribe(event => {
-            // vider le formulaire
-            this.showMessage = true;
+        this.userService.login(data).subscribe({
+            next: (response) => {
+                localStorage.setItem("token", response.token);
+                this.router.navigate(["/user/feed"]);
+            }
         });
     }
 }
