@@ -3,12 +3,15 @@ package com.sebastiend.mdd.services;
 
 import com.sebastiend.mdd.models.dto.Topics.*;
 import com.sebastiend.mdd.models.entities.SubscribeEntity;
+import com.sebastiend.mdd.models.entities.UserEntity;
 import com.sebastiend.mdd.repositories.*;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Service;
 
 
@@ -20,6 +23,11 @@ public class TopicService {
 
     @Autowired
     private SubscribeRepository subscribeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private JwtDecoder jwtDecoder;
 
 
     /* Get all the topics */
@@ -33,8 +41,15 @@ public class TopicService {
 
 
     /* Get the topics for a specifc user */
-    public TopicsListResponseDTO getSubscribed(Integer userId) {
-        List<Integer> allSubscriptions = subscribeRepository.findByUserId(userId).stream().map(SubscribeEntity::getTopicId).collect(Collectors.toList());       
+    public TopicsListResponseDTO getSubscribed() {
+        String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
+
+
+        List<Integer> allSubscriptions = subscribeRepository.findByUserId(userCheckExist.getUserId()).stream().map(SubscribeEntity::getTopicId).collect(Collectors.toList());       
         
         List<TopicDTO> topics = topicRepository.findAll().stream()
             .map(topic -> new TopicDTO(
@@ -51,9 +66,15 @@ public class TopicService {
 
 
     /* Subscribe a specific topic for a specific user */
-    public void subscribeTopicForUser(Integer topicId, Integer userId) {
+    public void subscribeTopicForUser(Integer topicId) {
+        String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
+
         SubscribeEntity subscribeEntity = new SubscribeEntity();
-        subscribeEntity.setUserId(userId);
+        subscribeEntity.setUserId(userCheckExist.getUserId());
         subscribeEntity.setTopicId(topicId);
 
         subscribeRepository.save(subscribeEntity);
@@ -62,7 +83,13 @@ public class TopicService {
 
     /* Unsubscribe a specific topic for a specific user */
     @Transactional
-    public void unsubscribeTopicForUser(Integer topicId, Integer userId) {
-        subscribeRepository.deleteByTopicIdAndUserId(topicId, userId);
+    public void unsubscribeTopicForUser(Integer topicId) {
+        String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
+
+        subscribeRepository.deleteByTopicIdAndUserId(topicId, userCheckExist.getUserId());
     }
 }

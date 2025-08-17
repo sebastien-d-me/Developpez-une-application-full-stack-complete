@@ -1,7 +1,7 @@
 import { ApplicationConfig, LOCALE_ID, provideZoneChangeDetection } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
-import { HTTP_INTERCEPTORS, provideHttpClient } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from "@angular/common/http";
 import { routes } from "./app.routes";
 import { providePrimeNG } from "primeng/config";
 import Aura from "@primeng/themes/aura";
@@ -10,7 +10,6 @@ import { JwtInterceptor } from "./interceptors/jwt.interceptor";
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         provideZoneChangeDetection({ eventCoalescing: true }), 
         provideRouter(routes),
         { provide: LOCALE_ID, useValue: "fr-FR" },
@@ -21,6 +20,11 @@ export const appConfig: ApplicationConfig = {
                 preset: Aura
             }
         }),
-        provideHttpClient()
+        provideHttpClient(withInterceptorsFromDi()),
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true
+        }
     ]
 };

@@ -41,7 +41,7 @@ export class MemberProfilPage {
     topics: TopicInterface[] = [];
     
     ngOnInit() {
-        this.topicService.getTopicsForUser(1).subscribe(data => {
+        this.topicService.getTopicsForUser().subscribe(data => {
             this.topics = data.topics.filter(topic => topic.subscribe === true);
         });
     } 
@@ -49,7 +49,7 @@ export class MemberProfilPage {
 
     /* Subscribe the topic */
     subscribe(topic: TopicInterface) {
-        this.topicService.subscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+        this.topicService.subscribeTopicForUser(topic.id_topics).subscribe(() => {
             topic.subscribe = true;
         });
     }
@@ -57,7 +57,7 @@ export class MemberProfilPage {
 
     /* Unsubscribe the topic */
     unsubscribe(topic: TopicInterface) {
-        this.topicService.unsubscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+        this.topicService.unsubscribeTopicForUser(topic.id_topics).subscribe(() => {
             topic.subscribe = false;
         });
     }

@@ -1,5 +1,5 @@
 0. Vider les formulaires quand envoie + refresh;
-1. Fonctionnalités d'authentification : Inscription, Connexion, Consulter son profil, Modifier son profil et Déconnexion;
+1. Fonctionnalités d'authentification : Consulter son profil, Modifier son profil;
 2. Mettre dans le fil d'actualité du plus récent au plus ancien des articles;
 3. Sécuriser le back-end avec Spring Security;
 4. Documenter le code;

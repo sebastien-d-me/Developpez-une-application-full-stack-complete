@@ -25,25 +25,25 @@ public class TopicController {
     }
 
 
-    /* Get the topics for a specifc user */
-    @GetMapping("/api/topics/user/{userId}")
-    public TopicsListResponseDTO getTopicsForUser(@PathVariable Integer userId) {
-        return topicService.getSubscribed(userId);
+    /* Get the topics for the logged specifc user */
+    @GetMapping("/api/topics/user/subscriptions")
+    public TopicsListResponseDTO getTopicsForUser() {
+        return topicService.getSubscribed();
     }
 
 
     /* Subscribe a specific topic for a specifc user */
-    @PostMapping("/api/topics/{topicId}/user/{userId}")
-    public ResponseEntity<Void> subscribeTopicForUser(@PathVariable Integer topicId, @PathVariable Integer userId) {
-        topicService.subscribeTopicForUser(topicId, userId);
+    @PostMapping("/api/topics/{topicId}/user/subscribe")
+    public ResponseEntity<Void> subscribeTopicForUser(@PathVariable Integer topicId) {
+        topicService.subscribeTopicForUser(topicId);
         return ResponseEntity.noContent().build();
     }
 
 
     /* Unsubscribe a specific topic for a specifc user */
-    @DeleteMapping("/api/topics/{topicId}/user/{userId}")
-    public ResponseEntity<Void> unsubscribeTopicForUser(@PathVariable Integer topicId, @PathVariable Integer userId) {
-        topicService.unsubscribeTopicForUser(topicId, userId);
+    @DeleteMapping("/api/topics/{topicId}/user/unsubscribe")
+    public ResponseEntity<Void> unsubscribeTopicForUser(@PathVariable Integer topicId) {
+        topicService.unsubscribeTopicForUser(topicId);
         return ResponseEntity.noContent().build();
     }
 }

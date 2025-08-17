@@ -23,7 +23,7 @@ export class TopicsListPage {
     topics: TopicInterface[] = [];
     
     ngOnInit() {
-        this.topicsService.getTopicsForUser(1).subscribe(data => {
+        this.topicsService.getTopicsForUser().subscribe(data => {
             this.topics = data.topics;
         });
     } 
@@ -31,7 +31,7 @@ export class TopicsListPage {
 
     /* Subscribe the topic */
     subscribe(topic: TopicInterface) {
-        this.topicsService.subscribeTopicForUser(topic.id_topics, 1).subscribe(() => {
+        this.topicsService.subscribeTopicForUser(topic.id_topics).subscribe(() => {
             topic.subscribe = true;
         });
     }

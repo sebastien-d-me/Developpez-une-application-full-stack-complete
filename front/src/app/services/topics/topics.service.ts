@@ -30,20 +30,20 @@ export class TopicsService {
     }
 
 
-    /* Get the topics for a specifc user */
-    public getTopicsForUser(userId: number): Observable<TopicsResponse> {
-        return this.http.get<TopicsResponse>(`${this.topicsUrl}/user/${userId}`);
+    /* Get the topics for the current logged user */
+    public getTopicsForUser(): Observable<TopicsResponse> {
+        return this.http.get<TopicsResponse>(`${this.topicsUrl}/user/subscriptions`);
     }
 
 
     /* Subscribe a specific topic for a specifc user */
-    public subscribeTopicForUser(topicId: number, userId: number): Observable<void> {
-        return this.http.post<void>(`${this.topicsUrl}/${topicId}/user/${userId}`, {});
+    public subscribeTopicForUser(topicId: number): Observable<void> {
+        return this.http.post<void>(`${this.topicsUrl}/${topicId}/user/subscribe`, {});
     }
 
 
     /* Unsubscribe a specific topic for a specifc user */
-    public unsubscribeTopicForUser(topicId: number, userId: number): Observable<void> {
-        return this.http.delete<void>(`${this.topicsUrl}/${topicId}/user/${userId}`);
+    public unsubscribeTopicForUser(topicId: number): Observable<void> {
+        return this.http.delete<void>(`${this.topicsUrl}/${topicId}/user/unsubscribe`);
     }
 }
