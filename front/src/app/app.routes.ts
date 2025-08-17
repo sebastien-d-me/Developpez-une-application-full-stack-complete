@@ -10,12 +10,13 @@ import { TopicsListPage } from "./pages/topics/list/list.component";
 import { ErrorNotFoundPage } from "./pages/error/not-found/not-found.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { MemberLogoutPage } from "./pages/user/logout/logout.component";
+import { NotAuthGuard } from "./guards/not-auth.guard";
 
 
 export const routes: Routes = [
-    { path: "", component: HomePage },
-    { path: "user/register", component: MemberRegisterPage },
-    { path: "user/login", component: MemberLoginPage },
+    { path: "", component: HomePage, canActivate: [NotAuthGuard] },
+    { path: "user/register", component: MemberRegisterPage, canActivate: [NotAuthGuard] },
+    { path: "user/login", component: MemberLoginPage, canActivate: [NotAuthGuard] },
     { path: "user/logout", component: MemberLogoutPage, canActivate: [AuthGuard] },
     { path: "user/feed", component: MemberFeedPage, canActivate: [AuthGuard] },
     { path: "user/profil", component: MemberProfilPage, canActivate: [AuthGuard] },

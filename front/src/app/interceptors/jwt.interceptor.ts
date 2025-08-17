@@ -3,23 +3,25 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 
-@Injectable({ 
-    providedIn: "root" 
-})
+@Injectable()
 
 
 export class JwtInterceptor implements HttpInterceptor {
-    constructor() { }
-
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (req.url.endsWith("/register") || req.url.endsWith("/login")) {
+            return next.handle(req);
+        }
+        
         const token = localStorage.getItem("token");
         if (token) {
-            request = request.clone({
+            const cloned = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${token}`,
-                },
+                    Authorization: `Bearer ${token}`
+                }
             });
+            return next.handle(cloned);
         }
-        return next.handle(request);
+
+        return next.handle(req);
     }
 }

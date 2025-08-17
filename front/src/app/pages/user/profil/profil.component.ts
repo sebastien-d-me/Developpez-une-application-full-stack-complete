@@ -6,6 +6,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { TopicTileComponent } from "../../../components/topics/tile/tile.component";
 import { TopicsService } from "../../../services/topics/topics.service";
 import { TopicInterface } from "../../../interfaces/Topic";
+import { UserService } from "../../../services/user/user.service";
 
 
 @Component({
@@ -26,7 +27,7 @@ import { TopicInterface } from "../../../interfaces/Topic";
 
 export class MemberProfilPage {
     /* Call the service */
-    constructor(private topicService: TopicsService) {}
+    constructor(private topicService: TopicsService, private userService: UserService) {}
 
 
     /* Create the FormGroup */
@@ -44,6 +45,13 @@ export class MemberProfilPage {
         this.topicService.getTopicsForUser().subscribe(data => {
             this.topics = data.topics.filter(topic => topic.subscribe === true);
         });
+
+        this.userService.userDetails().subscribe(user => {
+            this.profilForm.patchValue({
+                username: user.username,
+                email: user.email_address
+            })
+        })
     } 
 
 

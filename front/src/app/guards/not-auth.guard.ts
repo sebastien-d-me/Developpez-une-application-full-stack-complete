@@ -7,17 +7,17 @@ import { CanActivate, Router } from "@angular/router";
 })
 
 
-export class AuthGuard implements CanActivate {
+export class NotAuthGuard implements CanActivate {
     constructor(private router: Router) {}
 
     canActivate(): boolean {
         const token = localStorage.getItem("token");
         
         if (token) {
-            return true;
-        } else {
-            this.router.navigate(["user/login"]);
+            this.router.navigate(["user/feed"]);
             return false;
+        } else {
+            return true;
         }
     }
 }

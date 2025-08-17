@@ -2,6 +2,7 @@ package com.sebastiend.mdd.services;
 
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.sebastiend.mdd.models.dto.Users.UserCreateDTO;
-import com.sebastiend.mdd.models.dto.Users.UserDTO;
-import com.sebastiend.mdd.models.dto.Users.UserLoginDTO;
-import com.sebastiend.mdd.models.dto.Users.UserResponseDTO;
-import com.sebastiend.mdd.models.dto.Users.UserTokenResponseDTO;
+import com.sebastiend.mdd.models.dto.Users.*;
 import com.sebastiend.mdd.models.entities.UserEntity;
 import com.sebastiend.mdd.repositories.UserRepository;
 import lombok.Data;
@@ -32,7 +29,7 @@ public class UserService {
 	}
 
     /* Register */
-    public UserResponseDTO registerUser(@RequestBody UserCreateDTO data) {
+    public UserCreateResponseDTO registerUser(@RequestBody UserCreateDTO data) {
         LocalDateTime currentDate = LocalDateTime.now();
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -45,7 +42,7 @@ public class UserService {
         newUser.setCreatedAt(currentDate);
         newUser.setUpdatedAt(currentDate);
         userRepository.save(newUser); 
-        return new UserResponseDTO("Le compte a bien été crée");
+        return new UserCreateResponseDTO("Le compte a bien été crée");
     }
 
 
@@ -75,10 +72,16 @@ public class UserService {
     }
 
 
-    /* Get actual user */
-    public UserDTO getMe() {
+    /* Get user details */
+    public Optional<UserDTO> getDetails() {
         String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userRepository.findByEmailAddress(jwt);
-        return UserDTO.convertDTO(user);
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
+
+        Integer userId = userCheckExist.getUserId();
+
+        return userRepository.findById(userId).map(data -> UserDTO.convertDTO(userCheckExist)); 
     }
 }
