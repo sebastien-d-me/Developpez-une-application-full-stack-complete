@@ -42,4 +42,10 @@ export class UserService {
     public userDetails(): Observable<any> {
         return this.http.get<UserInterface>(`${this.userUrl}/details`);
     }
+
+
+    /* Update */
+    public update(data: any): Observable<any> {
+        return this.http.post<any>(`${this.userUrl}/details`, data);
+    }
 }

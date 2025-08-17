@@ -56,6 +56,10 @@ public class UserService {
         }
 
         UserEntity userCheckExist = userRepository.findByEmailAddress(usernameOrEmail);
+        if (userCheckExist == null) {
+            userCheckExist = userRepository.findByUsername(usernameOrEmail);
+        }
+
         if(userCheckExist == null) {
             throw new IllegalArgumentException("User no exist");
         }
@@ -83,5 +87,46 @@ public class UserService {
         Integer userId = userCheckExist.getUserId();
 
         return userRepository.findById(userId).map(data -> UserDTO.convertDTO(userCheckExist)); 
+    }
+
+
+    /* Update details */
+    public void updateUser(UserUpdateDTO data) {
+        if(data.getEmailAddress() == null || data.getUsername() == null || data.getPassword() == null) {
+            throw new IllegalArgumentException("All the fields must be filled");
+        }
+
+        String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        
+        
+
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode(data.getPassword());
+
+        UserEntity emailUser = userRepository.findByEmailAddress(data.getEmailAddress());
+        if(emailUser != null && !emailUser.getUserId().equals(userCheckExist.getUserId())) {
+            throw new IllegalArgumentException("Email already used");
+        }
+
+        UserEntity usernameUser = userRepository.findByUsername(data.getUsername());
+        if(usernameUser != null && !usernameUser.getUserId().equals(userCheckExist.getUserId())) {
+            throw new IllegalArgumentException("Username arleady used");
+        }
+
+        LocalDateTime currentDate = LocalDateTime.now();
+
+
+        userCheckExist.setEmailAddress(data.getEmailAddress());
+        userCheckExist.setUsername(data.getUsername());
+        if(data.getPassword() != null && !data.getPassword().isBlank()) {
+            userCheckExist.setPassword(password);
+        }
+        userCheckExist.setUpdatedAt(currentDate);
+        userRepository.save(userCheckExist);
     }
 }

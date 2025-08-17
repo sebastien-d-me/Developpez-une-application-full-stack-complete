@@ -33,7 +33,7 @@ export class MemberProfilPage {
     /* Create the FormGroup */
     profilForm: FormGroup = new FormGroup({
         username: new FormControl(""),
-        email: new FormControl(""),
+        email_address: new FormControl(""),
         password: new FormControl("")
     });
 
@@ -49,7 +49,7 @@ export class MemberProfilPage {
         this.userService.userDetails().subscribe(user => {
             this.profilForm.patchValue({
                 username: user.username,
-                email: user.email_address
+                email_address: user.email_address
             })
         })
     } 
@@ -67,6 +67,29 @@ export class MemberProfilPage {
     unsubscribe(topic: TopicInterface) {
         this.topicService.unsubscribeTopicForUser(topic.id_topics).subscribe(() => {
             topic.subscribe = false;
+        });
+    }
+
+
+    /* Submit the form */
+    showMessage: boolean = false;
+    messageValue: string = "";
+
+    onSubmit() {
+        const data = {
+            "username": this.profilForm.get("username")?.value,
+            "email_address": this.profilForm.get("email_address")?.value,
+            "password": this.profilForm.get("password")?.value,
+        }
+        this.showMessage = true;
+        this.userService.update(data).subscribe({
+            next: () => {
+                this.messageValue = "Succès : Modifications effectuées";
+                this.profilForm.get("password")?.reset();
+            },
+            error: (err) => {
+                this.messageValue = `Erreur : ${err.error}`;
+            }
         });
     }
 }

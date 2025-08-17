@@ -1,15 +1,16 @@
 <div class="profil">
     <div class="register">
         <h2 class="page__subtitle">Profil utilisateur</h2>
-        <form class="form" [formGroup]="profilForm">
+        <span>Seules les modifications sauvegardées seront modifiées.</span>
+        <form class="form" [formGroup]="profilForm" (ngSubmit)="onSubmit()">
             <div class="form__column">
                 <label for="username">Nom d'utilisateur :</label>
                 <input formControlName="username" id="username" name="username" pInputText type="text" />
             </div>
 
             <div class="form__column">
-                <label for="email">Adresse email :</label>
-                <input formControlName="email" id="email" name="email" pInputText type="email" />
+                <label for="email_address">Adresse email :</label>
+                <input formControlName="email_address" id="email_address" name="email_address" pInputText type="email" />
             </div>
 
             <div class="form__column">
@@ -21,6 +22,7 @@
                 <button class="button__purple" label="Sauvegarder" pButton></button>
             </div>
         </form>
+        <span *ngIf="showMessage">{{ messageValue }}</span>
     </div>
 
     <!-- Subscriptions -->

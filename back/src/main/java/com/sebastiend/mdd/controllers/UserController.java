@@ -13,6 +13,7 @@ import com.sebastiend.mdd.models.dto.Users.UserCreateDTO;
 import com.sebastiend.mdd.models.dto.Users.UserDTO;
 import com.sebastiend.mdd.models.dto.Users.UserLoginDTO;
 import com.sebastiend.mdd.models.dto.Users.UserTokenResponseDTO;
+import com.sebastiend.mdd.models.dto.Users.UserUpdateDTO;
 import com.sebastiend.mdd.services.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -44,5 +45,16 @@ public class UserController {
     public Optional<UserDTO> userDetails() {
         return userService.getDetails();
     }
-    
+
+
+    /* Update user details */
+    @PostMapping("/api/users/details")
+    public ResponseEntity<?> update(@RequestBody UserUpdateDTO data) {
+        try {
+            userService.updateUser(data);
+            return ResponseEntity.ok().build();
+        } catch(IllegalArgumentException error) {
+            return ResponseEntity.badRequest().body(error.getMessage());
+        }
+    }
 }
