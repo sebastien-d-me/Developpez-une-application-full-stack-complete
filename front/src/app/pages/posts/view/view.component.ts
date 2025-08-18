@@ -72,7 +72,7 @@ export class PostsViewPage {
             "content": this.commentForm.get("content")?.value
         }
         this.commentsService.publishComment(data).subscribe(event => {
-            // vider le formulaire
+            this.commentForm.reset();
             this.showMessage = true;
         });
     }

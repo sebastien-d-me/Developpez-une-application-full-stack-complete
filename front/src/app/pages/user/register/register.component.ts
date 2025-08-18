@@ -47,7 +47,7 @@ export class MemberRegisterPage {
             "password": this.registerForm.get("password")?.value,
         }
         this.userService.register(data).subscribe(event => {
-            // vider le formulaire
+            this.registerForm.reset();
             this.showMessage = true;
         });
     }

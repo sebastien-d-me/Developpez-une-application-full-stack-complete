@@ -63,7 +63,7 @@ export class PostsAddPage {
             "content": this.postForm.get("content")?.value
         }
         this.postService.publishPost(data).subscribe(event => {
-            // vider le formulaire
+            this.postForm.reset();
             this.showMessage = true;
         });
     }

@@ -1,5 +1,4 @@
 À faire - CODE :
-- Vider les formulaires quand ils sont transmis
 - Mettre à jour instantanément les commentaires ajoutées
 - Respecter les bonnes pratiques
     - Vérifications des champs
