@@ -1,5 +1,4 @@
 1. Vider les formulaires quand envoie + refresh;
-2. Mettre dans le fil d'actualité du plus récent au plus ancien des articles + les commentaires
 3. Sécuriser le back-end avec Spring Security;
 4. Documenter le code;
 5. Tester le responsive;

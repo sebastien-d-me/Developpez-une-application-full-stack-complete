@@ -1,4 +1,4 @@
 <div class="comment">
     <span class="comment__author">{{ author }}</span>
-    <p class="comment__text">{{ text }}</p>
+    <p class="comment__text">{{ text }} | Publié le {{ date | date: "d/MM/yy à H:mm" }}</p>
 </div>

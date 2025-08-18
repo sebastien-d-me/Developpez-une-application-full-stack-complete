@@ -1,10 +1,11 @@
+import { DatePipe } from "@angular/common";
 import { Component, Input } from "@angular/core";
 
 
 @Component({
     selector: "app-comment",
     standalone: true,
-    imports: [],
+    imports: [DatePipe],
     templateUrl: "./comment.component.html",
     styleUrl: "./comment.component.scss"
 })
@@ -14,4 +15,5 @@ export class CommentComponent {
     /* Input */
     @Input() author : string = "";
     @Input() text : string = "";
+    @Input() date: string = "";
 }

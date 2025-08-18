@@ -14,7 +14,7 @@
     <div class="feed__posts">
         <span class="center" *ngIf="posts.length === 0">Aucun article n'est disponible.</span>
         <app-post-tile
-            *ngFor="let post of posts"
+            *ngFor="let post of posts.slice().reverse()"
             [id]="post.id_posts"
             [title]="post.title"
             [date]="post.updated_at"

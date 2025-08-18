@@ -16,7 +16,7 @@
     <div class="post__comments">
         <span class="subtitle">Commentaires</span>
         <div class="comments__list">
-            <app-comment *ngFor="let comment of comments" [author]="comment.author" [text]="comment.content"></app-comment>
+            <app-comment *ngFor="let comment of comments.slice().reverse()" [author]="comment.author" [text]="comment.content" [date]="comment.updated_at"></app-comment>
             <span *ngIf="comments.length === 0">Aucun commentaire pour le moment.</span>
         </div>
         <form class="form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
