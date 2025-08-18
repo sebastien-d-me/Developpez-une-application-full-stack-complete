@@ -69,8 +69,7 @@ export class PostsViewPage {
     onSubmit() {
         const data = {
             "postId": Number(this.idPost),
-            "content": this.commentForm.get("content")?.value,
-            "user": 1
+            "content": this.commentForm.get("content")?.value
         }
         this.commentsService.publishComment(data).subscribe(event => {
             // vider le formulaire

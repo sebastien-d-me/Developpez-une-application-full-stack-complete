@@ -60,8 +60,7 @@ export class PostsAddPage {
         const data = {
             "topic": this.postForm.get("topic")?.value,
             "title": this.postForm.get("title")?.value,
-            "content": this.postForm.get("content")?.value,
-            "user": 1
+            "content": this.postForm.get("content")?.value
         }
         this.postService.publishPost(data).subscribe(event => {
             // vider le formulaire

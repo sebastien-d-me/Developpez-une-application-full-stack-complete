@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.sebastiend.mdd.models.dto.Comments.CommentCreateDTO;
@@ -43,7 +44,12 @@ public class CommentService {
     /* Publish a post */
     public CommentResponseDTO publishComment(@RequestBody CommentCreateDTO data) {
         PostEntity post = postRepository.findById(data.getPostId()).orElse(null);
-        UserEntity user = userRepository.findById(data.getUser()).orElse(null);
+
+        String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
 
         LocalDateTime currentDate = LocalDateTime.now();
 
@@ -51,7 +57,7 @@ public class CommentService {
         newComment.setContent(data.getContent());
         newComment.setCreatedAt(currentDate);
         newComment.setUpdatedAt(currentDate);
-        newComment.setUser(user);
+        newComment.setUser(userCheckExist);
         newComment.setPost(post);
         commentRepository.save(newComment);
 

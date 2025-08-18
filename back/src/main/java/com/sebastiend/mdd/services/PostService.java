@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.sebastiend.mdd.repositories.PostRepository;
@@ -50,7 +51,13 @@ public class PostService {
     /* Publish a post */
     public PostResponseDTO publishPost(@RequestBody PostCreateDTO data) {
         TopicEntity topic = topicRepository.findById(data.getTopic()).orElse(null);
-        UserEntity user = userRepository.findById(data.getUser()).orElse(null);
+
+
+        String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+        if(userCheckExist == null) {
+            throw new IllegalArgumentException("The user not exist");
+        } 
 
         LocalDateTime currentDate = LocalDateTime.now();
 
@@ -60,7 +67,7 @@ public class PostService {
         newPost.setTopic(topic);
         newPost.setCreatedAt(currentDate);
         newPost.setUpdatedAt(currentDate);
-        newPost.setUser(user);
+        newPost.setUser(userCheckExist);
         postRepository.save(newPost);
 
         return new PostResponseDTO("Le post a été publié");

@@ -46,6 +46,9 @@ export class MemberLoginPage {
         this.userService.login(data).subscribe({
             next: (response) => {
                 localStorage.setItem("token", response.token);
+                const tokenParsed = JSON.parse(atob(response.token.split(".")[1]));
+                const tokenExpiration = (tokenParsed.exp).toString();
+                localStorage.setItem("token_expiration", tokenExpiration);
                 this.router.navigate(["/user/feed"]);
             }
         });

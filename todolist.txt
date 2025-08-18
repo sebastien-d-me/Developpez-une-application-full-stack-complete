@@ -1,10 +1,9 @@
-0. Vider les formulaires quand envoie + refresh;
-1. Fonctionnalités d'authentification : Consulter son profil, Modifier son profil;
-2. Mettre dans le fil d'actualité du plus récent au plus ancien des articles;
+1. Vider les formulaires quand envoie + refresh;
+2. Mettre dans le fil d'actualité du plus récent au plus ancien des articles + les commentaires
 3. Sécuriser le back-end avec Spring Security;
 4. Documenter le code;
 5. Tester le responsive;
-6. Mettre les bonnes pratiques + vérifications des champs des formulaires;
+6. Mettre les bonnes pratiques + vérifications des champs des formulaires + message primeng plutot que basique span;
 7. Nettoyer le code;
 8. Tester l'application entière;
 9. Vérifier la conformité fonctionnelles;
