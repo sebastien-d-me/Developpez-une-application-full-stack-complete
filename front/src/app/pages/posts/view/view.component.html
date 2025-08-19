@@ -27,6 +27,6 @@
                 </button>
             </div>
         </form>
-        <span class="message" *ngIf="showMessage">Le commentaire a bien été crée.</span>
+        <span *ngIf="showMessage">{{ messageValue }}</span>
     </div>
 </div>

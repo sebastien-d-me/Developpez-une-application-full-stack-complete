@@ -6,6 +6,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
 import { UserService } from "../../../services/user/user.service";
 import { Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 
 @Component({
@@ -18,6 +19,7 @@ import { Router } from "@angular/router";
         ButtonModule,
         InputTextModule,
         PageInformationsComponent, 
+        CommonModule
     ],
     templateUrl: "./login.component.html",
     styleUrl: "./login.component.scss"
@@ -37,12 +39,14 @@ export class MemberLoginPage {
 
     /* Submit the form */
     showMessage: boolean = false;
+    messageValue: string = "";
 
     onSubmit() {
         const data = {
             "usernameOrMail": this.loginForm.get("usernameOrMail")?.value,
             "password": this.loginForm.get("password")?.value,
         }
+        this.showMessage = true;
         this.userService.login(data).subscribe({
             next: (response) => {
                 localStorage.setItem("token", response.token);
@@ -50,6 +54,9 @@ export class MemberLoginPage {
                 const tokenExpiration = (tokenParsed.exp).toString();
                 localStorage.setItem("token_expiration", tokenExpiration);
                 this.router.navigate(["/user/feed"]);
+            },
+            error: (err) => {
+                this.messageValue = `Erreur : ${err.error}`;
             }
         });
     }

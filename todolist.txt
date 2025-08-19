@@ -13,3 +13,7 @@
 À faire - SOUTENANCE : 
 - Réaliser le diaporama de soutenance
 - Mettre en ligne les livrables
+
+
+### BUGS
+Si email ou nom d'utilisateur pas modifié, alors dans ce cas pas sauvegarder

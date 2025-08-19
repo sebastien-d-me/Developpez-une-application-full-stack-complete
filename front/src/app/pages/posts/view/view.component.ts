@@ -51,7 +51,9 @@ export class PostsViewPage {
 
     loadComments() {
         this.commentsService.getCommentsOfPost(this.idPost).subscribe(data => {
-            this.comments = data.comments;
+            this.comments = data.comments.sort((a, b) => 
+                new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+            );
         });
     }
 
@@ -74,16 +76,24 @@ export class PostsViewPage {
 
     /* Submit the form */
     showMessage: boolean = false;
+    messageValue: string = "";
 
     onSubmit() {
         const data = {
             "postId": Number(this.idPost),
             "content": this.commentForm.get("content")?.value
         }
-        this.commentsService.publishComment(data).subscribe(event => {
-            this.loadComments();
-            this.commentForm.reset();
-            this.showMessage = true;
+        this.showMessage = true;
+        this.commentsService.publishComment(data).subscribe({
+            next: () => {
+                this.messageValue = "Le commentaire a bien été crée.";
+                this.loadComments();
+                this.commentForm.reset();
+                this.showMessage = true;
+            },
+            error: (err) => {
+                this.messageValue = `Erreur : ${err.error}`;
+            }
         });
     }
 }

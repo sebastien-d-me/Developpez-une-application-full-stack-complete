@@ -39,6 +39,7 @@ export class MemberRegisterPage {
 
     /* Submit the form */
     showMessage: boolean = false;
+    messageValue: string = "";
 
     onSubmit() {
         const data = {
@@ -46,9 +47,15 @@ export class MemberRegisterPage {
             "email_address": this.registerForm.get("email")?.value,
             "password": this.registerForm.get("password")?.value,
         }
-        this.userService.register(data).subscribe(event => {
-            this.registerForm.reset();
-            this.showMessage = true;
+        this.showMessage = true;
+        this.userService.register(data).subscribe({
+            next: () => {
+                this.messageValue = "Succès : Compte crée";
+                this.registerForm.reset();
+            },
+            error: (err) => {
+                this.messageValue = `Erreur : ${err.error}`;
+            }
         });
     }
 }

@@ -23,5 +23,5 @@
             <button class="button__purple" label="Créer" pButton type="submit"></button>
         </div>
     </form>
-    <span class="message" *ngIf="showMessage">L'article a bien été crée.</span>
+    <span *ngIf="showMessage">{{ messageValue }}</span>
 </div>

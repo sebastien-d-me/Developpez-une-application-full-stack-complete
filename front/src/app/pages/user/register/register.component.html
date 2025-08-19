@@ -23,5 +23,5 @@
             <button class="button__purple" label="S'inscrire" pButton></button>
         </div>
     </form>
-    <span class="message" *ngIf="showMessage">Le compte a bien été crée.</span>
+    <span *ngIf="showMessage">{{ messageValue }}</span>
 </div>
