@@ -11,11 +11,6 @@
     - Réduction et optimisation du code
     - Documentation du code
 - Tester l'ensemble de l'application
-- Rédiger le README détaillé
-
-
-À faire - DOCUMENT :
-- Finaliser le template du document
 
 
 À faire - SOUTENANCE : 
