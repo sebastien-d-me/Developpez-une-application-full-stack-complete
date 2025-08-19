@@ -49,6 +49,12 @@ export class PostsViewPage {
     /* Load the comments */
     comments: CommentsInterface[] = [];
 
+    loadComments() {
+        this.commentsService.getCommentsOfPost(this.idPost).subscribe(data => {
+            this.comments = data.comments;
+        });
+    }
+
     /* Load the post */   
     post!: PostInterface;
     
@@ -58,6 +64,7 @@ export class PostsViewPage {
             this.post = data;
         });
 
+        /* Load comments of post initial */
         this.commentsService.getCommentsOfPost(this.idPost).subscribe(data => {
             this.comments = data.comments;
         });
@@ -72,6 +79,7 @@ export class PostsViewPage {
             "content": this.commentForm.get("content")?.value
         }
         this.commentsService.publishComment(data).subscribe(event => {
+            this.loadComments();
             this.commentForm.reset();
             this.showMessage = true;
         });

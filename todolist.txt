@@ -1,5 +1,4 @@
 À faire - CODE :
-- Mettre à jour instantanément les commentaires ajoutées
 - Respecter les bonnes pratiques
     - Vérifications des champs
     - Utilisation de composants PrimeNG
