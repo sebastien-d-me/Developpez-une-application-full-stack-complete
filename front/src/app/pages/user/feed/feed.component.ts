@@ -31,7 +31,9 @@ export class MemberFeedPage {
             const topicIds = subscribedTopics.map(topic => topic.id_topics);
 
             this.postsService.getPostsWhereSubscribed(topicIds).subscribe(data => {
-                this.posts = data.posts;
+                this.posts = data.posts.sort((a, b) => 
+                    new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+                );
             });
         });
     }

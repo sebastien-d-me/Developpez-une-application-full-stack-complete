@@ -1,10 +1,8 @@
 À faire - CODE :
 - Respecter les bonnes pratiques
-    - Vérifications des champs
+    - Vérifications des champs + Un mot de passe est valide si : son nombre de caractère est supérieur ou égal à 8 caractères ; il contient au moins un de chacun de ces types de caractères : chiffre, lettre minuscule, lettre majuscule, caractère spécial.
     - Utilisation de composants PrimeNG
 - Vérifier les conformités 
-    - Fonctionnelles
-    - Techniques
     - Maquettes (et responsive)
 - Nettoyage du projet
     - Réduction et optimisation du code
