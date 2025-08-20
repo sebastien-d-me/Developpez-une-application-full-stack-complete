@@ -1,7 +1,7 @@
 <div class="profil">
     <div class="register">
         <h2 class="page__subtitle">Profil utilisateur</h2>
-        <span>Seules les modifications sauvegardées seront modifiées.</span>
+        <span>Vous devrez vous reconnecter après modifications.</span>
         <form class="form" [formGroup]="profilForm" (ngSubmit)="onSubmit()">
             <div class="form__column">
                 <label for="username">Nom d'utilisateur :</label>
@@ -29,7 +29,7 @@
     <div class="subscriptions">
         <h2 class="page__subtitle">Abonnements</h2>
         <div class="topics__list">
-            <span class="center" *ngIf="topics.length === 0">Consultez la page des thèmes pour avoir des abonnements.</span>
+            <span class="center" *ngIf="topics.length === 0">Consultez la page des thèmes pour vous abonner à des thématqiues.</span>
             <app-topic-tile
                 *ngFor="let topic of topics"
                 [title]="topic.title"

@@ -63,11 +63,11 @@ export class PostsAddPage {
             "title": this.postForm.get("title")?.value,
             "content": this.postForm.get("content")?.value
         }
+        this.showMessage = true;
         this.postService.publishPost(data).subscribe({
             next: () => {
                 this.messageValue = "Succès : L'article a bien été crée";
                 this.postForm.reset();
-                this.showMessage = true;
             },
             error: (err) => {
                 this.messageValue = `Erreur : ${err.error}`;

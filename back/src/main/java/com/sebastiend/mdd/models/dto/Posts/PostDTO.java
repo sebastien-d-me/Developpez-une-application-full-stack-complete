@@ -36,13 +36,18 @@ public class PostDTO {
 
     /* Convert to DTO */
     public static PostDTO convertDTO(PostEntity entity) {
+        String userAnonymous = "anonyme";
+        if(entity.getUser() != null) {
+            userAnonymous = entity.getUser().getUsername();
+        }
+
         return new PostDTO(
             entity.getPostId(), 
             entity.getTitle(), 
             entity.getContent(),
             entity.getCreatedAt(),
             entity.getUpdatedAt(),
-            entity.getUser().getUsername(),
+            userAnonymous,
             entity.getTopic().getTitle()
         );
     }

@@ -70,36 +70,36 @@ public class UserService {
         userRepository.save(newUser); 
 
         // Retourne un message de confirmation
-        return new UserCreateResponseDTO("Le compte a bien été crée");
+        return new UserCreateResponseDTO("Le compte a bien été crée.");
     }
 
 
     /* Login */
     public UserTokenResponseDTO loginUser(UserLoginDTO userLogin) throws AuthenticationException {
+        // Vérifie si les champs sont vides
         String usernameOrEmail = userLogin.getUsernameOrMail();
         String password = userLogin.getPassword();
-
-        if(usernameOrEmail == null || password == null) {
-            throw new IllegalArgumentException("Some fields are empty");
+        if(usernameOrEmail == "" || password == "") {
+            throw new IllegalArgumentException("Tous les champs doivent être remplis.");
         }
 
+        // Vérifie si l'utilisateur existe (email puis utilisateur au cas où)
         UserEntity userCheckExist = userRepository.findByEmailAddress(usernameOrEmail);
         if (userCheckExist == null) {
             userCheckExist = userRepository.findByUsername(usernameOrEmail);
         }
-
         if(userCheckExist == null) {
-            throw new IllegalArgumentException("User no exist");
+            throw new IllegalArgumentException("Aucun utilisateur n'existe avec cet identifiant.");
         }
 
+        // Vérifie si le mot de passe est le bon
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String passwordCheckSame = userCheckExist.getPassword();
-
         if(passwordEncoder.matches(password, passwordCheckSame)) {
             String token = jwtService.generateToken(userCheckExist);
             return new UserTokenResponseDTO(token);
         } else {
-            throw new IllegalArgumentException("Passowrd is incorrect");
+            throw new IllegalArgumentException("Le mot de passe est incorrect.");
         }
     }
 
@@ -120,28 +120,24 @@ public class UserService {
 
     /* Update details */
     public void updateUser(UserUpdateDTO data) {
-        // quand on enregistre une valeur, elle doit se replacer par défaut
-        // vérifier la sécurité du MDP
         String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
+
+        if(data.getEmailAddress() == "" && data.getUsername() == "" && data.getPassword() == "") {
+            throw new IllegalArgumentException("Aucune modification n'a été effectué.");
+        }
+
         
-        
-
-        if(userCheckExist == null) {
-            throw new IllegalArgumentException("The user not exist");
-        } 
-
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String password = passwordEncoder.encode(data.getPassword());
-
         UserEntity emailUser = userRepository.findByEmailAddress(data.getEmailAddress());
         if(emailUser != null && !emailUser.getUserId().equals(userCheckExist.getUserId())) {
-            throw new IllegalArgumentException("Email already used");
+            throw new IllegalArgumentException("Un compte existe déjà avec cet email.");
         }
+
+
 
         UserEntity usernameUser = userRepository.findByUsername(data.getUsername());
         if(usernameUser != null && !usernameUser.getUserId().equals(userCheckExist.getUserId())) {
-            throw new IllegalArgumentException("Username arleady used");
+            throw new IllegalArgumentException("Un compte existe déjà avec ce nom d'utilisateur.");
         }
 
         LocalDateTime currentDate = LocalDateTime.now();
@@ -156,7 +152,15 @@ public class UserService {
         
     
         if(data.getPassword() != null && !data.getPassword().isBlank()) {
-            userCheckExist.setPassword(password);
+            // Vérifie le mot de passe (longueur + sécurité)
+            String regexPassword = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+            if(!data.getPassword().matches(regexPassword)) {
+                throw new IllegalArgumentException("Le mot de passe doit contenir minimum 8 caractères, une majuscule, une minuscule et un caractère spécial.");
+            } else {
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                String password = passwordEncoder.encode(data.getPassword());
+                userCheckExist.setPassword(password);
+            }
         }
 
         userCheckExist.setUpdatedAt(currentDate);

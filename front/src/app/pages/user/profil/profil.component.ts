@@ -7,6 +7,7 @@ import { TopicTileComponent } from "../../../components/topics/tile/tile.compone
 import { TopicsService } from "../../../services/topics/topics.service";
 import { TopicInterface } from "../../../interfaces/Topic";
 import { UserService } from "../../../services/user/user.service";
+import { Router, RouterModule } from "@angular/router";
 
 
 @Component({
@@ -27,7 +28,7 @@ import { UserService } from "../../../services/user/user.service";
 
 export class MemberProfilPage {
     /* Call the service */
-    constructor(private topicService: TopicsService, private userService: UserService) {}
+    constructor(private topicService: TopicsService, private userService: UserService, private router: Router) {}
 
 
     /* Create the FormGroup */
@@ -53,6 +54,16 @@ export class MemberProfilPage {
             })
         })
     } 
+
+    /* Update the value */
+    updateValue() {
+        this.userService.userDetails().subscribe(user => {
+            this.profilForm.patchValue({
+                username: user.username,
+                email_address: user.email_address
+            })
+        })
+    }
 
 
     /* Subscribe the topic */
@@ -85,7 +96,7 @@ export class MemberProfilPage {
         this.userService.update(data).subscribe({
             next: () => {
                 this.messageValue = "Succès : Modifications effectuées";
-                this.profilForm.get("password")?.reset();
+                this.router.navigate(["/user/logout"]);
             },
             error: (err) => {
                 this.messageValue = `Erreur : ${err.error}`;

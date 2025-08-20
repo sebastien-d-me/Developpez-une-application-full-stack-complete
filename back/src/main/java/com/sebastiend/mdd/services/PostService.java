@@ -50,13 +50,22 @@ public class PostService {
 
     /* Publish a post */
     public PostResponseDTO publishPost(@RequestBody PostCreateDTO data) {
+        if(data.getTopic() == null) {
+            throw new IllegalArgumentException("Tous les champs doivent être remplis.");
+        }
+
         TopicEntity topic = topicRepository.findById(data.getTopic()).orElse(null);
 
+        if(data.getTitle() == "" || data.getContent() == "") {
+            throw new IllegalArgumentException("Tous les champs doivent être remplis.");
+        }
 
+
+        // Vérifie si l'utilisateur existe déjà et est connecté
         String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
         if(userCheckExist == null) {
-            throw new IllegalArgumentException("The user not exist");
+            throw new IllegalArgumentException("Veuillez vous reconnecter.");
         } 
 
         LocalDateTime currentDate = LocalDateTime.now();

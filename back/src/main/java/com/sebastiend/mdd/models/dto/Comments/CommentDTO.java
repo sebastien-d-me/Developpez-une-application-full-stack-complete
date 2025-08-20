@@ -33,12 +33,17 @@ public class CommentDTO {
 
     /* Convert to DTO */
     public static CommentDTO convertDTO(CommentEntity entity) {
+        String userAnonymous = "anonyme";
+        if(entity.getUser() != null) {
+            userAnonymous = entity.getUser().getUsername();
+        }
+        
         return new CommentDTO(
             entity.getCommentId(), 
             entity.getContent(),
             entity.getCreatedAt(),
             entity.getUpdatedAt(),
-            entity.getUser().getUsername(),
+            userAnonymous,
             entity.getPost().getPostId()
         );
     }

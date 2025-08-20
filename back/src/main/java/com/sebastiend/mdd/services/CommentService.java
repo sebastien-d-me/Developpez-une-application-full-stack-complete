@@ -51,6 +51,10 @@ public class CommentService {
             throw new IllegalArgumentException("The user not exist");
         } 
 
+        if(data.getContent() == "" || data.getContent() == null) {
+            throw new IllegalArgumentException("Le message ne peut pas être vide.");
+        }
+
         LocalDateTime currentDate = LocalDateTime.now();
 
         CommentEntity newComment = new CommentEntity();
