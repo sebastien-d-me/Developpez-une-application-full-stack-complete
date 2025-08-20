@@ -33,6 +33,7 @@ export class MemberRegisterPage {
     /* Call the service */
     constructor(private userService: UserService, private messageService: MessageService) {}
 
+    
     /* Create the FormGroup */
     registerForm: FormGroup = new FormGroup({
         username: new FormControl(""),
@@ -48,7 +49,7 @@ export class MemberRegisterPage {
             "email_address": this.registerForm.get("email")?.value,
             "password": this.registerForm.get("password")?.value,
         }
-        this.userService.register(data).subscribe({
+        this.userService.userRegister(data).subscribe({
             next: () => {
                 this.messageService.add({ severity: "success", summary: "Succès", detail: "Le compte a été créé." });
                 this.registerForm.reset();

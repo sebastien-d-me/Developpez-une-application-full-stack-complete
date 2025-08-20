@@ -9,3 +9,10 @@ export interface PostInterface {
         username: string;
     };
 } 
+
+// Request
+export interface PostsRequest {
+    topic: number;
+    title: string;
+    content: string;
+}

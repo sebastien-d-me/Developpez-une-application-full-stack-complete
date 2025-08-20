@@ -2,12 +2,13 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user/user.service";
 
+
 @Component({
-  selector: "app-logout",
-  standalone: true,
-  imports: [],
-  templateUrl: "./logout.component.html",
-  styleUrl: "./logout.component.scss"
+    selector: "app-logout",
+    standalone: true,
+    imports: [],
+    templateUrl: "./logout.component.html",
+    styleUrl: "./logout.component.scss"
 })
 
 
@@ -18,7 +19,7 @@ export class MemberLogoutPage {
 
     /* Logout */
     ngOnInit() {
-        this.userService.logout();
+        this.userService.userLogout();
         this.router.navigate(["/user/login"]);
     }
 }

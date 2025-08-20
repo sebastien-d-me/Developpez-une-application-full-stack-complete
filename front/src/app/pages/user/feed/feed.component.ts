@@ -24,9 +24,8 @@ export class MemberFeedPage {
 
     /* Load the posts */
     posts: PostInterface[] = [];
-    
     ngOnInit() {
-        this.topicService.getTopicsForUser().subscribe(data => {
+        this.topicService.topicsCurrentUser().subscribe(data => {
             const subscribedTopics = data.topics.filter(topic => topic.subscribe === true);
             const topicIds = subscribedTopics.map(topic => topic.id_topics);
 

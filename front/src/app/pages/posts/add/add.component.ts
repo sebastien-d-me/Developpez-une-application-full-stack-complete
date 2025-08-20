@@ -50,7 +50,6 @@ export class PostsAddPage {
 
     /* Load the topics */
     topics: TopicInterface[] = [];
-    
     ngOnInit() {
         this.topicService.getTopics().subscribe(data => {
             this.topics = data.topics;

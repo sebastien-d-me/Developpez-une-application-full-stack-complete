@@ -7,3 +7,9 @@ export interface CommentsInterface {
         username: string;
     };
 } 
+
+// Request
+export interface CommentsRequest {
+    postId: number;
+    content: string;
+}

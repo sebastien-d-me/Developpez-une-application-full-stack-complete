@@ -1,7 +1,7 @@
+import { TopicInterface } from "../../interfaces/Topic";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { TopicInterface } from "../../interfaces/Topic";
 
 
 interface TopicsResponse {
@@ -24,25 +24,25 @@ export class TopicsService {
     }
 
 
-    /* Get all the topics */
+    /* Topics */
     public getTopics(): Observable<TopicsResponse> {
         return this.http.get<TopicsResponse>(this.topicsUrl);
     }
 
 
-    /* Get the topics for the current logged user */
-    public getTopicsForUser(): Observable<TopicsResponse> {
+    /* Topics which user subscribed */
+    public topicsCurrentUser(): Observable<TopicsResponse> {
         return this.http.get<TopicsResponse>(`${this.topicsUrl}/user/subscriptions`);
     }
 
 
-    /* Subscribe a specific topic for a specifc user */
+    /* Subscribe the topic for User */
     public subscribeTopicForUser(topicId: number): Observable<void> {
         return this.http.post<void>(`${this.topicsUrl}/${topicId}/user/subscribe`, {});
     }
 
 
-    /* Unsubscribe a specific topic for a specifc user */
+    /* Unsubscribe the topic for User */
     public unsubscribeTopicForUser(topicId: number): Observable<void> {
         return this.http.delete<void>(`${this.topicsUrl}/${topicId}/user/unsubscribe`);
     }

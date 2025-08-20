@@ -1,13 +1,14 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { UserLoginInterface } from "../interfaces/User";
 
 
 @Injectable()
 
 
 export class JwtInterceptor implements HttpInterceptor {
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<UserLoginInterface>, next: HttpHandler): Observable<HttpEvent<UserLoginInterface>> {
         if (req.url.endsWith("/register") || req.url.endsWith("/login")) {
             return next.handle(req);
         }

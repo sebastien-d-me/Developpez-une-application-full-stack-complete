@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Router } from "@angular/router";
-import { UserInterface } from "../../interfaces/User";
+import { UserInterface, UserLoginInterface, UserRegisterInterface, UserDetailsInterface, UserLoginResponseInterface } from "../../interfaces/User";
 
 
 @Injectable({
@@ -21,31 +20,31 @@ export class UserService {
 
 
     /* Register */
-    public register(user: any): Observable<any> {
-        return this.http.post<any>(`${this.userUrl}/register`, user);
+    public userRegister(user: UserRegisterInterface): Observable<void> {
+        return this.http.post<void>(`${this.userUrl}/register`, user);
     }
 
 
     /* Login */
-    public login(user: any): Observable<any> {
-        return this.http.post<any>(`${this.userUrl}/login`, user);
+    public userLogin(user: UserLoginInterface): Observable<UserLoginResponseInterface> {
+        return this.http.post<UserLoginResponseInterface>(`${this.userUrl}/login`, user);
     }
 
 
     /* Logout */
-    public logout(): void {
+    public userLogout(): void {
         localStorage.removeItem("token");
     }
 
 
-    /* Details */
-    public userDetails(): Observable<any> {
+    /* Details (GET) */
+    public userGetDetails(): Observable<UserInterface> {
         return this.http.get<UserInterface>(`${this.userUrl}/details`);
     }
 
 
-    /* Update */
-    public update(data: any): Observable<any> {
-        return this.http.post<any>(`${this.userUrl}/details`, data);
+    /* Details (SET) */
+    public userSetDetails(data: UserDetailsInterface): Observable<void> {
+        return this.http.post<void>(`${this.userUrl}/details`, data);
     }
 }

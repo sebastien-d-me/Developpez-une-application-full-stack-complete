@@ -1,8 +1,8 @@
+import { CommentsInterface, CommentsRequest } from "../../interfaces/Comments";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { CommentsInterface } from "../../interfaces/Comments";
-import { CommentsRequest } from "../../interfaces/CommentsRequest";
+
 
 interface CommentsResponse {
     comments: CommentsInterface[];
@@ -28,6 +28,7 @@ export class CommentsService {
     public getCommentsOfPost(postId: string|null): Observable<CommentsResponse> {
         return this.http.get<CommentsResponse>(`${this.commentsUrl}/${postId}`);
     }
+
 
     /* Comment a post */
     public publishComment(commentsRequest: CommentsRequest): Observable<void> {

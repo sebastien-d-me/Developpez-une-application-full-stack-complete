@@ -1,8 +1,8 @@
+import { PostInterface, PostsRequest } from "../../interfaces/Post";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { PostInterface } from "../../interfaces/Post";
-import { PostsRequest } from "../../interfaces/PostsRequest";
+
 
 interface PostsResponse {
     posts: PostInterface[];
@@ -24,13 +24,13 @@ export class PostsService {
     }
 
 
-    /* Get all the posts */
+    /* Posts */
     public getPosts(): Observable<PostsResponse> {
         return this.http.get<PostsResponse>(this.postsUrl);
     }
 
 
-    /* Get a specific post */
+    /* Specific post */
     public getPost(postId: string|null): Observable<PostInterface> {
         return this.http.get<PostInterface>(`${this.postsUrl}/${postId}`);
     }
@@ -41,6 +41,7 @@ export class PostsService {
         return this.http.post<void>(this.postsUrl, postRequest);
     }
 
+    
     /* Get all post where user is subscribed */
     public getPostsWhereSubscribed(topicIds: number[]): Observable<PostsResponse> {
         return this.http.post<PostsResponse>("/api/posts/subscribed", topicIds);

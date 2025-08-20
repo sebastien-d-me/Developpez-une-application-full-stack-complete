@@ -7,10 +7,10 @@ import { CommentComponent } from "../../../components/posts/comment/comment.comp
 import { PostsService } from "../../../services/posts/posts.service";
 import { PostInterface } from "../../../interfaces/Post";
 import { CommentsInterface } from "../../../interfaces/Comments";
-import { CommentsRequest } from "../../../interfaces/CommentsRequest";
 import { CommentsService } from "../../../services/comments/comments.service";
 import { MessageService } from "primeng/api";
 import { ToastModule } from 'primeng/toast';
+
 
 @Component({
     selector: "app-post-view",
@@ -35,11 +35,13 @@ import { ToastModule } from 'primeng/toast';
 export class PostsViewPage {
     idPost: string | null = null;
 
+    
     /* Call the service */
     constructor(
         private route: ActivatedRoute, 
         private postService: PostsService,
-        private commentsService: CommentsService    , private messageService: MessageService
+        private commentsService: CommentsService, 
+        private messageService: MessageService
     ) {}
 
 
@@ -51,7 +53,6 @@ export class PostsViewPage {
 
     /* Load the comments */
     comments: CommentsInterface[] = [];
-
     loadComments() {
         this.commentsService.getCommentsOfPost(this.idPost).subscribe(data => {
             this.comments = data.comments.sort((a, b) => 
@@ -60,9 +61,9 @@ export class PostsViewPage {
         });
     }
 
+
     /* Load the post */   
     post!: PostInterface;
-    
     ngOnInit() {
         this.idPost = this.route.snapshot.paramMap.get("id");
         this.postService.getPost(this.idPost).subscribe(data => {
@@ -76,6 +77,7 @@ export class PostsViewPage {
             );
         });
     } 
+
 
     /* Submit the form */
     onSubmit() {

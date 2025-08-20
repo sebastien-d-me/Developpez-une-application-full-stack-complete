@@ -34,6 +34,7 @@ export class MemberLoginPage {
     /* Call the service */
     constructor(private userService: UserService, private router: Router, private messageService: MessageService) {}
 
+    
     /* Create the FormGroup */
     loginForm: FormGroup = new FormGroup({
         usernameOrMail: new FormControl(""),
@@ -47,7 +48,7 @@ export class MemberLoginPage {
             "usernameOrMail": this.loginForm.get("usernameOrMail")?.value,
             "password": this.loginForm.get("password")?.value,
         }
-        this.userService.login(data).subscribe({
+        this.userService.userLogin(data).subscribe({
             next: (response) => {
                 localStorage.setItem("token", response.token);
                 const tokenParsed = JSON.parse(atob(response.token.split(".")[1]));

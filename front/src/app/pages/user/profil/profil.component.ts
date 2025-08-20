@@ -7,9 +7,10 @@ import { TopicTileComponent } from "../../../components/topics/tile/tile.compone
 import { TopicsService } from "../../../services/topics/topics.service";
 import { TopicInterface } from "../../../interfaces/Topic";
 import { UserService } from "../../../services/user/user.service";
-import { Router, RouterModule } from "@angular/router";
+import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { ToastModule } from 'primeng/toast';
+
 
 @Component({
     selector: "app-member-profil",
@@ -44,9 +45,8 @@ export class MemberProfilPage {
 
     /* Load the topics */
     topics: TopicInterface[] = [];
-    
     ngOnInit() {
-        this.topicService.getTopicsForUser().subscribe(data => {
+        this.topicService.topicsCurrentUser().subscribe(data => {
             this.topics = data.topics.filter(topic => topic.subscribe === true);
         });
     } 
@@ -75,7 +75,7 @@ export class MemberProfilPage {
             "email_address": this.profilForm.get("email_address")?.value,
             "password": this.profilForm.get("password")?.value,
         }
-        this.userService.update(data).subscribe({
+        this.userService.userSetDetails(data).subscribe({
             next: () => {
                 this.messageService.add({ severity: "success", summary: "Succès", detail: "Modifications effectuées" });
                 this.router.navigate(["/user/logout"]);

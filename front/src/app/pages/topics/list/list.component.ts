@@ -21,9 +21,8 @@ export class TopicsListPage {
 
     /* Load the topics */
     topics: TopicInterface[] = [];
-    
     ngOnInit() {
-        this.topicsService.getTopicsForUser().subscribe(data => {
+        this.topicsService.topicsCurrentUser().subscribe(data => {
             this.topics = data.topics;
         });
     } 
