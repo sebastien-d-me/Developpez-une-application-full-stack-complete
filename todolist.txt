@@ -1,7 +1,5 @@
 À faire - CODE :
 - Respecter les bonnes pratiques
-- Vérifier les conformités 
-    - Maquettes (et responsive)
 - Nettoyage du projet
     - Réduction et optimisation du code
     - Documentation du code

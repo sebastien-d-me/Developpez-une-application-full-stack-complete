@@ -72,7 +72,7 @@ i.pi.pi-user {
     /* Header */
     .header {
         height: 150px;
-        padding: 0 10x;
+        padding: 0 10px;
     }
 
 
@@ -131,8 +131,8 @@ i.pi.pi-user {
 @media screen and (max-width: 800px) {
     /* Logo */
     .header__logo {
-        height: 80px;
-        margin: auto 0;
-        width: 100px;
+        height: 125px;
+        margin: 0 auto;
+        width: 200px;
     }
 }
