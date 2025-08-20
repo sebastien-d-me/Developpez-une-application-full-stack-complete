@@ -1,6 +1,5 @@
 À faire - CODE :
 - Respecter les bonnes pratiques
-    - Utilisation de composants PrimeNG
 - Vérifier les conformités 
     - Maquettes (et responsive)
 - Nettoyage du projet

@@ -8,7 +8,8 @@ import { TopicsService } from "../../../services/topics/topics.service";
 import { TopicInterface } from "../../../interfaces/Topic";
 import { UserService } from "../../../services/user/user.service";
 import { Router, RouterModule } from "@angular/router";
-
+import { MessageService } from "primeng/api";
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: "app-member-profil",
@@ -19,8 +20,10 @@ import { Router, RouterModule } from "@angular/router";
         ReactiveFormsModule,
         ButtonModule,
         InputTextModule,
-        TopicTileComponent, 
+        TopicTileComponent,
+        ToastModule
     ],
+    providers: [MessageService],
     templateUrl: "./profil.component.html",
     styleUrl: "./profil.component.scss"
 })
@@ -28,7 +31,7 @@ import { Router, RouterModule } from "@angular/router";
 
 export class MemberProfilPage {
     /* Call the service */
-    constructor(private topicService: TopicsService, private userService: UserService, private router: Router) {}
+    constructor(private topicService: TopicsService, private userService: UserService, private router: Router, private messageService: MessageService) {}
 
 
     /* Create the FormGroup */
@@ -46,24 +49,7 @@ export class MemberProfilPage {
         this.topicService.getTopicsForUser().subscribe(data => {
             this.topics = data.topics.filter(topic => topic.subscribe === true);
         });
-
-        this.userService.userDetails().subscribe(user => {
-            this.profilForm.patchValue({
-                username: user.username,
-                email_address: user.email_address
-            })
-        })
     } 
-
-    /* Update the value */
-    updateValue() {
-        this.userService.userDetails().subscribe(user => {
-            this.profilForm.patchValue({
-                username: user.username,
-                email_address: user.email_address
-            })
-        })
-    }
 
 
     /* Subscribe the topic */
@@ -83,23 +69,19 @@ export class MemberProfilPage {
 
 
     /* Submit the form */
-    showMessage: boolean = false;
-    messageValue: string = "";
-
     onSubmit() {
         const data = {
             "username": this.profilForm.get("username")?.value,
             "email_address": this.profilForm.get("email_address")?.value,
             "password": this.profilForm.get("password")?.value,
         }
-        this.showMessage = true;
         this.userService.update(data).subscribe({
             next: () => {
-                this.messageValue = "Succès : Modifications effectuées";
+                this.messageService.add({ severity: "success", summary: "Succès", detail: "Modifications effectuées" });
                 this.router.navigate(["/user/logout"]);
             },
             error: (err) => {
-                this.messageValue = `Erreur : ${err.error}`;
+               this.messageService.add({ severity: "error", summary: "Erreur", detail: `${err.error}` });
             }
         });
     }

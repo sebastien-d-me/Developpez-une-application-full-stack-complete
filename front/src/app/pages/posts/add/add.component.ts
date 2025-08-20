@@ -10,6 +10,9 @@ import { PageInformationsComponent } from "../../../components/page-informations
 import { TopicsService } from "../../../services/topics/topics.service";
 import { TopicInterface } from "../../../interfaces/Topic";
 import { PostsService } from "../../../services/posts/posts.service";
+import { MessageService } from "primeng/api";
+import { ToastModule } from 'primeng/toast';
+
 
 @Component({
     selector: "app-post-add",
@@ -23,8 +26,10 @@ import { PostsService } from "../../../services/posts/posts.service";
         InputTextModule,
         SelectModule,
         TextareaModule,
-        PageInformationsComponent
+        PageInformationsComponent,
+        ToastModule
     ],
+    providers: [MessageService],
     templateUrl: "./add.component.html",
     styleUrl: "./add.component.scss"
 })
@@ -32,7 +37,7 @@ import { PostsService } from "../../../services/posts/posts.service";
 
 export class PostsAddPage {
     /* Call the service */
-    constructor(private topicService: TopicsService, private postService : PostsService) {}
+    constructor(private topicService: TopicsService, private postService : PostsService, private messageService: MessageService) {}
 
 
     /* Create the FormGroup */
@@ -54,23 +59,19 @@ export class PostsAddPage {
 
 
     /* Submit the form */
-    showMessage: boolean = false;
-    messageValue: string = "";
-
     onSubmit() {
         const data = {
             "topic": this.postForm.get("topic")?.value,
             "title": this.postForm.get("title")?.value,
             "content": this.postForm.get("content")?.value
         }
-        this.showMessage = true;
         this.postService.publishPost(data).subscribe({
             next: () => {
-                this.messageValue = "Succès : L'article a bien été crée";
+                this.messageService.add({ severity: "success", summary: "Succès", detail: "L'article a bien été créé." });
                 this.postForm.reset();
             },
             error: (err) => {
-                this.messageValue = `Erreur : ${err.error}`;
+                this.messageService.add({ severity: "error", summary: "Erreur", detail: `${err.error}` });
             }
         });
     }

@@ -9,7 +9,8 @@ import { PostInterface } from "../../../interfaces/Post";
 import { CommentsInterface } from "../../../interfaces/Comments";
 import { CommentsRequest } from "../../../interfaces/CommentsRequest";
 import { CommentsService } from "../../../services/comments/comments.service";
-
+import { MessageService } from "primeng/api";
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: "app-post-view",
@@ -22,8 +23,10 @@ import { CommentsService } from "../../../services/comments/comments.service";
         RouterLink,
         TextareaModule,
         CommentComponent,
-        DatePipe
+        DatePipe,
+        ToastModule
     ],
+    providers: [MessageService],
     templateUrl: "./view.component.html",
     styleUrl: "./view.component.scss"
 })
@@ -36,7 +39,7 @@ export class PostsViewPage {
     constructor(
         private route: ActivatedRoute, 
         private postService: PostsService,
-        private commentsService: CommentsService    
+        private commentsService: CommentsService    , private messageService: MessageService
     ) {}
 
 
@@ -75,24 +78,19 @@ export class PostsViewPage {
     } 
 
     /* Submit the form */
-    showMessage: boolean = false;
-    messageValue: string = "";
-
     onSubmit() {
         const data = {
             "postId": Number(this.idPost),
             "content": this.commentForm.get("content")?.value
         }
-        this.showMessage = true;
         this.commentsService.publishComment(data).subscribe({
             next: () => {
-                this.messageValue = "Le commentaire a bien été crée.";
+                this.messageService.add({ severity: "success", summary: "Succès", detail: "Le commentaire a été créé." });
                 this.loadComments();
                 this.commentForm.reset();
-                this.showMessage = true;
             },
             error: (err) => {
-                this.messageValue = `Erreur : ${err.error}`;
+                this.messageService.add({ severity: "error", summary: "Erreur", detail: `${err.error}` });
             }
         });
     }

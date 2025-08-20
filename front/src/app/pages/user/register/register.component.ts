@@ -6,6 +6,8 @@ import { InputTextModule } from "primeng/inputtext";
 import { PageInformationsComponent } from "../../../components/page-informations/page-informations.component";
 import { UserService } from "../../../services/user/user.service";
 import { CommonModule } from "@angular/common";
+import { MessageService } from "primeng/api";
+import { ToastModule } from 'primeng/toast';
 
 
 @Component({
@@ -18,8 +20,10 @@ import { CommonModule } from "@angular/common";
         ButtonModule,
         InputTextModule,
         PageInformationsComponent, 
-        CommonModule
+        CommonModule,
+        ToastModule
     ],
+    providers: [MessageService],
     templateUrl: "./register.component.html",
     styleUrl: "./register.component.scss"
 })
@@ -27,7 +31,7 @@ import { CommonModule } from "@angular/common";
 
 export class MemberRegisterPage {
     /* Call the service */
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private messageService: MessageService) {}
 
     /* Create the FormGroup */
     registerForm: FormGroup = new FormGroup({
@@ -38,23 +42,19 @@ export class MemberRegisterPage {
 
 
     /* Submit the form */
-    showMessage: boolean = false;
-    messageValue: string = "";
-
     onSubmit() {
         const data = {
             "username": this.registerForm.get("username")?.value,
             "email_address": this.registerForm.get("email")?.value,
             "password": this.registerForm.get("password")?.value,
         }
-        this.showMessage = true;
         this.userService.register(data).subscribe({
             next: () => {
-                this.messageValue = "Succès : Compte crée";
+                this.messageService.add({ severity: "success", summary: "Succès", detail: "Le compte a été créé." });
                 this.registerForm.reset();
             },
             error: (err) => {
-                this.messageValue = `Erreur : ${err.error}`;
+                this.messageService.add({ severity: "error", summary: "Erreur", detail: `${err.error}` });
             }
         });
     }

@@ -7,6 +7,8 @@ import { PageInformationsComponent } from "../../../components/page-informations
 import { UserService } from "../../../services/user/user.service";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { MessageService } from "primeng/api";
+import { ToastModule } from 'primeng/toast';
 
 
 @Component({
@@ -19,8 +21,10 @@ import { CommonModule } from "@angular/common";
         ButtonModule,
         InputTextModule,
         PageInformationsComponent, 
-        CommonModule
+        CommonModule,
+        ToastModule
     ],
+    providers: [MessageService],
     templateUrl: "./login.component.html",
     styleUrl: "./login.component.scss"
 })
@@ -28,7 +32,7 @@ import { CommonModule } from "@angular/common";
 
 export class MemberLoginPage {
     /* Call the service */
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private userService: UserService, private router: Router, private messageService: MessageService) {}
 
     /* Create the FormGroup */
     loginForm: FormGroup = new FormGroup({
@@ -38,15 +42,11 @@ export class MemberLoginPage {
 
 
     /* Submit the form */
-    showMessage: boolean = false;
-    messageValue: string = "";
-
     onSubmit() {
         const data = {
             "usernameOrMail": this.loginForm.get("usernameOrMail")?.value,
             "password": this.loginForm.get("password")?.value,
         }
-        this.showMessage = true;
         this.userService.login(data).subscribe({
             next: (response) => {
                 localStorage.setItem("token", response.token);
@@ -56,7 +56,7 @@ export class MemberLoginPage {
                 this.router.navigate(["/user/feed"]);
             },
             error: (err) => {
-                this.messageValue = `Erreur : ${err.error}`;
+                this.messageService.add({ severity: "error", summary: "Erreur", detail: `${err.error}` });
             }
         });
     }
