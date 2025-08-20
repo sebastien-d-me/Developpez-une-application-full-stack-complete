@@ -6,20 +6,18 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.*;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class JWTService {
 	private JwtEncoder jwtEncoder;
-	
     
 	public JWTService(JwtEncoder jwtEncoder) {
 		this.jwtEncoder = jwtEncoder;
 	}
 
-
+    /* Generate the token */
     public String generateToken(UserEntity user) {
         Instant now = Instant.now();
      	JwtClaimsSet claims = JwtClaimsSet.builder()

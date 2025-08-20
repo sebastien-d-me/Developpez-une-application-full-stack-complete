@@ -18,9 +18,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
+    // Get the value of the JWT key
     @Value("${jwt.key}")
     private String JWTKey;
 
+
+    // Filter the route with security access
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {		
 		return http
@@ -33,17 +36,23 @@ public class SpringSecurityConfig {
 			.build();		
 	}
     
+
+    // Encrypt the password
 	@Bean
 	BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
+
+    // Decode the JWT
     @Bean
     JwtDecoder jwtDecoder() {
         SecretKeySpec secretKey = new SecretKeySpec(this.JWTKey.getBytes(), 0, this.JWTKey.getBytes().length, "RSA");
         return NimbusJwtDecoder.withSecretKey(secretKey).macAlgorithm(MacAlgorithm.HS256).build();
     }
 
+
+    // Encode the JWT
     @Bean
 	JwtEncoder jwtEncoder() {
 		return new NimbusJwtEncoder(new ImmutableSecret<>(this.JWTKey.getBytes()));

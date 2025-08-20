@@ -4,8 +4,7 @@ package com.sebastiend.mdd.models.dto.Users;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sebastiend.mdd.models.entities.UserEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 
 @AllArgsConstructor

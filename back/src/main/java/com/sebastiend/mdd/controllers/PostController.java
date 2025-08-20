@@ -6,17 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import com.sebastiend.mdd.models.dto.Posts.PostCreateDTO;
-import com.sebastiend.mdd.models.dto.Posts.PostDTO;
-import com.sebastiend.mdd.models.dto.Posts.PostResponseDTO;
-import com.sebastiend.mdd.models.dto.Posts.PostsListResponseDTO;
+import org.springframework.web.bind.annotation.*;
+import com.sebastiend.mdd.models.dto.Posts.*;
 import com.sebastiend.mdd.services.PostService;
 
 
@@ -28,7 +19,7 @@ public class PostController {
 
     /* Get all the posts */
     @GetMapping("/api/posts")
-    public ResponseEntity<?> getTopics() {
+    public ResponseEntity<Object> getTopics() {
         try {
             PostsListResponseDTO response = postService.getAll();
             return ResponseEntity.ok(response);
@@ -40,7 +31,7 @@ public class PostController {
 
     /* Get a specific post */
     @GetMapping("/api/posts/{postId}")
-    public ResponseEntity<?> getPost(@PathVariable Integer postId) {
+    public ResponseEntity<Object> getPost(@PathVariable Integer postId) {
         try {
             Optional<PostDTO> response = postService.getPost(postId);
             return ResponseEntity.ok(response);
@@ -52,7 +43,7 @@ public class PostController {
 
     /* Publish the post */
     @PostMapping("/api/posts")
-    public ResponseEntity<?> publishPost(@RequestBody PostCreateDTO data) {
+    public ResponseEntity<Object> publishPost(@RequestBody PostCreateDTO data) {
         try {
             PostResponseDTO response = postService.publishPost(data);
             return ResponseEntity.ok(response);
@@ -62,9 +53,9 @@ public class PostController {
     }
 
 
-    /* Get subscribed posts */
+    /* Get posts where user is suscribed */
     @PostMapping(value= "/api/posts/subscribed")
-    public ResponseEntity<?> getPostsWhereSubscribed(@RequestBody List<Integer> topicIds) {
+    public ResponseEntity<Object> getPostsWhereSubscribed(@RequestBody List<Integer> topicIds) {
         try {
             PostsListResponseDTO response = postService.getPostsWhereSubscribed(topicIds);
             return ResponseEntity.ok(response);

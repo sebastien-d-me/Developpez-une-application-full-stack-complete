@@ -1,11 +1,9 @@
 package com.sebastiend.mdd.models.dto.Topics;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.sebastiend.mdd.models.entities.TopicEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 
 @AllArgsConstructor

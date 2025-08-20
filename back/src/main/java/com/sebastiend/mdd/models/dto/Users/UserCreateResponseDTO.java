@@ -1,8 +1,7 @@
 package com.sebastiend.mdd.models.dto.Users;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 
 @AllArgsConstructor

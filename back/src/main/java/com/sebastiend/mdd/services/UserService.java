@@ -30,37 +30,37 @@ public class UserService {
 
     /* Register */
     public UserCreateResponseDTO registerUser(@RequestBody UserCreateDTO data) {
-        // Vérifie si les champs sont vides
+        // Check if there is content
         if(data.getEmailAddress() == "" || data.getUsername() == "" || data.getPassword() == "") {
             throw new IllegalArgumentException("Tous les champs doivent être remplis.");
         }
 
-        // Vérifie si l'utilisateur existe déjà
+        // Check if the username already exist
         UserEntity usernameCheck = userRepository.findByUsername(data.getUsername());
         if(usernameCheck != null) {
             throw new IllegalArgumentException("Un compte existe déjà avec ce nom d'utilisateur.");
         }
 
-        // Vérifie si l'email existe déjà
+        // Check if the email already exist
         UserEntity emailCheck = userRepository.findByEmailAddress(data.getEmailAddress());
         if(emailCheck != null) {
             throw new IllegalArgumentException("Un compte existe déjà avec cette adresse email.");
         }
 
-        // Vérifie le mot de passe (longueur + sécurité)
+        // Check the password security
         String regexPassword = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
         if(!data.getPassword().matches(regexPassword)) {
             throw new IllegalArgumentException("Le mot de passe doit contenir minimum 8 caractères, une majuscule, une minuscule et un caractère spécial.");
         }
 
-        // Récupère la date actuelle
+        // Get the current date
         LocalDateTime currentDate = LocalDateTime.now();
 
-        // Crypte le MDP
+        // Encrypt the password
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String password = passwordEncoder.encode(data.getPassword());
 
-        // Enregistre l'utilisateur
+        // Save the data
         UserEntity newUser = new UserEntity();
         newUser.setEmailAddress(data.getEmailAddress());
         newUser.setUsername(data.getUsername());
@@ -69,21 +69,21 @@ public class UserService {
         newUser.setUpdatedAt(currentDate);
         userRepository.save(newUser); 
 
-        // Retourne un message de confirmation
-        return new UserCreateResponseDTO("Le compte a bien été crée.");
+        // Return a message
+        return new UserCreateResponseDTO("Le compte a bien été créé.");
     }
 
 
     /* Login */
     public UserTokenResponseDTO loginUser(UserLoginDTO userLogin) throws AuthenticationException {
-        // Vérifie si les champs sont vides
+        // Check if there is content
         String usernameOrEmail = userLogin.getUsernameOrMail();
         String password = userLogin.getPassword();
         if(usernameOrEmail == "" || password == "") {
             throw new IllegalArgumentException("Tous les champs doivent être remplis.");
         }
 
-        // Vérifie si l'utilisateur existe (email puis utilisateur au cas où)
+        // Check if the user exist
         UserEntity userCheckExist = userRepository.findByEmailAddress(usernameOrEmail);
         if (userCheckExist == null) {
             userCheckExist = userRepository.findByUsername(usernameOrEmail);
@@ -92,7 +92,7 @@ public class UserService {
             throw new IllegalArgumentException("Aucun utilisateur n'existe avec cet identifiant.");
         }
 
-        // Vérifie si le mot de passe est le bon
+        // Check if the password is correct
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String passwordCheckSame = userCheckExist.getPassword();
         if(passwordEncoder.matches(password, passwordCheckSame)) {
@@ -106,53 +106,58 @@ public class UserService {
 
     /* Get user details */
     public Optional<UserDTO> getDetails() {
+        // Check if logged
         String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
         if(userCheckExist == null) {
-            throw new IllegalArgumentException("The user not exist");
+            throw new IllegalArgumentException("Le compte n'existe pas.");
         } 
 
+        // Return the details
         Integer userId = userCheckExist.getUserId();
-
         return userRepository.findById(userId).map(data -> UserDTO.convertDTO(userCheckExist)); 
     }
 
 
     /* Update details */
     public void updateUser(UserUpdateDTO data) {
+        // Check if logged
         String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
 
+        // Check if there is content filled
         if(data.getEmailAddress() == "" && data.getUsername() == "" && data.getPassword() == "") {
             throw new IllegalArgumentException("Aucune modification n'a été effectué.");
         }
-
         
+        // Check if the email already exist
         UserEntity emailUser = userRepository.findByEmailAddress(data.getEmailAddress());
         if(emailUser != null && !emailUser.getUserId().equals(userCheckExist.getUserId())) {
             throw new IllegalArgumentException("Un compte existe déjà avec cet email.");
         }
 
-
-
+        // Check if the username already exist
         UserEntity usernameUser = userRepository.findByUsername(data.getUsername());
         if(usernameUser != null && !usernameUser.getUserId().equals(userCheckExist.getUserId())) {
             throw new IllegalArgumentException("Un compte existe déjà avec ce nom d'utilisateur.");
         }
 
+        // Get the current date
         LocalDateTime currentDate = LocalDateTime.now();
 
+        // Check if the username is filled
         if(data.getUsername() != null && !data.getUsername().isBlank()) {
             userCheckExist.setUsername(data.getUsername());
         }
 
+        // Check if the email is filled
         if(data.getEmailAddress() != null && !data.getEmailAddress().isBlank()) {
             userCheckExist.setEmailAddress(data.getEmailAddress());
         }
         
-    
+        // Check if the password is filled
         if(data.getPassword() != null && !data.getPassword().isBlank()) {
-            // Vérifie le mot de passe (longueur + sécurité)
+            // Check the password security
             String regexPassword = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
             if(!data.getPassword().matches(regexPassword)) {
                 throw new IllegalArgumentException("Le mot de passe doit contenir minimum 8 caractères, une majuscule, une minuscule et un caractère spécial.");
@@ -163,6 +168,7 @@ public class UserService {
             }
         }
 
+        // Save the data
         userCheckExist.setUpdatedAt(currentDate);
         userRepository.save(userCheckExist);
     }

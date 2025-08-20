@@ -2,11 +2,9 @@ package com.sebastiend.mdd.models.dto.Posts;
 
 
 import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.sebastiend.mdd.models.entities.PostEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 
 @AllArgsConstructor

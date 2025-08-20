@@ -8,16 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.sebastiend.mdd.models.dto.Comments.CommentCreateDTO;
-import com.sebastiend.mdd.models.dto.Comments.CommentDTO;
-import com.sebastiend.mdd.models.dto.Comments.CommentListResponseDTO;
-import com.sebastiend.mdd.models.dto.Comments.CommentResponseDTO;
-import com.sebastiend.mdd.models.entities.CommentEntity;
-import com.sebastiend.mdd.models.entities.PostEntity;
-import com.sebastiend.mdd.models.entities.UserEntity;
-import com.sebastiend.mdd.repositories.CommentRepository;
-import com.sebastiend.mdd.repositories.PostRepository;
-import com.sebastiend.mdd.repositories.UserRepository;
+import com.sebastiend.mdd.models.dto.Comments.*;
+import com.sebastiend.mdd.models.entities.*;
+import com.sebastiend.mdd.repositories.*;
 
 
 @Service
@@ -31,11 +24,10 @@ public class CommentService {
     @Autowired
     private PostRepository postRepository;
 
+
     /* Get all comments of a specific post */
     public CommentListResponseDTO getCommentsOfPost(Integer postId) {
-        List<CommentDTO> comments = commentRepository.findAllByPost_PostId(postId).stream()
-            .map(CommentDTO::convertDTO)
-            .collect(Collectors.toList());
+        List<CommentDTO> comments = commentRepository.findAllByPost_PostId(postId).stream().map(CommentDTO::convertDTO).collect(Collectors.toList());
 
         return new CommentListResponseDTO(comments);
     }
@@ -45,18 +37,22 @@ public class CommentService {
     public CommentResponseDTO publishComment(@RequestBody CommentCreateDTO data) {
         PostEntity post = postRepository.findById(data.getPostId()).orElse(null);
 
+        // Check if logged
         String jwt = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity userCheckExist = userRepository.findByEmailAddress(jwt);
         if(userCheckExist == null) {
-            throw new IllegalArgumentException("The user not exist");
+            throw new IllegalArgumentException("Le compte n'existe pas.");
         } 
 
+        // Check if there is content
         if(data.getContent() == "" || data.getContent() == null) {
-            throw new IllegalArgumentException("Le message ne peut pas être vide.");
+            throw new IllegalArgumentException("Le contenu du commentaire ne peut pas être vide.");
         }
 
+        // Get the current date
         LocalDateTime currentDate = LocalDateTime.now();
 
+        // Save the data
         CommentEntity newComment = new CommentEntity();
         newComment.setContent(data.getContent());
         newComment.setCreatedAt(currentDate);
@@ -65,6 +61,7 @@ public class CommentService {
         newComment.setPost(post);
         commentRepository.save(newComment);
 
+        // Return a message
         return new CommentResponseDTO("Le commentaire a été publié");
     }
 }
