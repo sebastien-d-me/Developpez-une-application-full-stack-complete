@@ -1,11 +1,3 @@
-À faire - CODE :
-- Respecter les bonnes pratiques
-- Nettoyage du projet
-    - Réduction et optimisation du code
-    - Documentation du code
-- Tester l'ensemble de l'application
-
-
 À faire - SOUTENANCE : 
 - Réaliser le diaporama de soutenance
 - Mettre en ligne les livrables
